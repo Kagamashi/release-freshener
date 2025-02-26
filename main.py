@@ -1,21 +1,20 @@
 import os
 import requests
 
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # If you have an access token
 BASE_URL = "https://api.github.com"
 
 repos = [
     {"owner": "kedacore", "repo": "keda"},
     {"owner": "istio", "repo": "istio"},
-    {"owner" : "argocd", "repo": "argocd"},
+    {"owner" : "argoproj", "repo": "argocd"},
 ]
 
-def get_latest_release(owner, repo, token=None):
+def get_latest_release(owner, repo):
     """Fetch the latest release from GitHub for a given repository."""
     url = f"{BASE_URL}/repos/{owner}/{repo}/releases"
     headers = {}
-    if token:
-        headers["Authorization"] = f"token {token}"
+    # if token:
+    #     headers["Authorization"] = f"token {token}"
     
     response = requests.get(url, headers=headers)
     response.raise_for_status()  # Raise an error for bad status codes
@@ -40,9 +39,8 @@ def get_latest_release(owner, repo, token=None):
     }
 
 def main():
-    token = GITHUB_TOKEN
     for item in repos:
-        result = get_latest_release(item["owner"], item["repo"], token)
+        result = get_latest_release(item["owner"], item["repo"])
         if result:
             print(f"Repo: {item['owner']}/{item['repo']}")
             print(f"  - Release Tag: {result['tag_name']}")
