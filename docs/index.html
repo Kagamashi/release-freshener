@@ -2,206 +2,242 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Beautiful Release Board</title>
-  <!-- Google Fonts (optional) -->
+  <title>Responsive LI Table - Latest Releases</title>
+
+  <!-- Google Fonts (Optional) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet"
-  >
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" 
+    rel="stylesheet">
 
-  <!-- Bootstrap 5 CSS via CDN -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeo9Z/hh5c+G3GoOT6eNyVw6V9UfXGdZajp+STV8f2Hzhk25"
-    crossorigin="anonymous"
-  />
-
-  <!-- Custom Styles -->
   <style>
-    /* Base font and gradient background */
+    /* Body gradient background and base font */
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
-      color: #333;
+      margin: 0;
+      padding: 0;
+      font-family: "Open Sans", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Transparent navbar with subtle background */
-    .navbar {
+    /* Main container centering and spacing */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
       background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
-    .navbar-brand {
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
       font-weight: 600;
+      color: #4a4a4a;
       letter-spacing: 0.5px;
     }
 
-    /* Hero / jumbotron style */
-    .hero {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 40px 20px;
-      margin-bottom: 2rem;
-      border-radius: 15px;
-      text-align: center;
+    /* Responsive table structure using <ul> and <li> */
+    .responsive-table {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
+    /* Table header row */
+    .table-header {
+      display: flex;
       font-weight: 600;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      color: #666;
-      margin-bottom: 0;
-    }
-
-    /* Container for the table with a light background */
-    #table-container {
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 2rem;
-    }
-
-    /* Table styling */
-    table {
-      background-color: #fff;
-    }
-
-    thead tr {
-      background-color: #4a5568; /* Dark grayish for header */
+      background: #58508d;
       color: #fff;
+      border-radius: 6px 6px 0 0;
     }
 
-    tbody tr:nth-child(even) {
-      background-color: #f8f9fa; /* Subtle zebra stripes */
+    /* Each row is a flex container of columns */
+    .table-row {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      transition: background 0.2s;
+    }
+    .table-row:hover {
+      background: #f6f6f6;
     }
 
-    /* Footer at bottom */
+    /* Column design */
+    .col {
+      flex: 1;
+      padding: 14px 12px;
+      overflow: hidden;
+    }
+
+    /* Label for small screens (we'll show it via data-label) */
+    [data-label]::before {
+      content: attr(data-label) ": ";
+      font-weight: 600;
+      color: #555;
+      margin-right: 8px;
+      display: none; /* hidden on desktop, shown on mobile below */
+    }
+
+    /* HEAD columns specifically for the table header */
+    .table-header > .col {
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Breakpoint for switching to mobile-friendly stacked rows */
+    @media (max-width: 767px) {
+      .table-header {
+        display: none; /* Hide the top row headers */
+      }
+      .table-row {
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+      }
+      .col {
+        display: block;
+        padding: 10px;
+      }
+      .col:before {
+        display: inline-block;
+      }
+      /* Show data-label prefix on mobile */
+      [data-label]::before {
+        display: inline;
+      }
+    }
+
+    /* Loading area */
+    .loading-area {
+      text-align: center;
+      padding: 20px;
+    }
+    .spinner {
+      width: 30px;
+      height: 30px;
+      border: 4px solid #ddd;
+      border-top-color: #58508d;
+      border-radius: 50%;
+      display: inline-block;
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Footer pinned to bottom (optional) */
     .footer {
       margin-top: auto;
       background-color: rgba(255, 255, 255, 0.9);
-      padding: 1rem;
       text-align: center;
-      font-size: 0.9rem;
+      padding: 15px;
+      color: #666;
     }
-
     .footer a {
-      color: #f5576c;
+      color: #667eea;
       text-decoration: none;
+      font-weight: 600;
     }
-
     .footer a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-
-<!-- Simple navbar -->
-<nav class="navbar navbar-expand-lg">
+  <!-- Container for the table -->
   <div class="container">
-    <a class="navbar-brand" href="#">Release Board</a>
+    <h2>Latest Stable Releases</h2>
+
+    <!-- Loading spinner (visible initially) -->
+    <div id="loading" class="loading-area">
+      <div class="spinner"></div>
+      <p>Fetching data...</p>
+    </div>
+
+    <!-- UL-based responsive table, initially hidden -->
+    <ul class="responsive-table d-none" id="release-table">
+      <li class="table-header">
+        <div class="col col-1">Repository</div>
+        <div class="col col-2">Tag</div>
+        <div class="col col-3">Name</div>
+        <div class="col col-4">Published</div>
+        <div class="col col-5">Link</div>
+      </li>
+      <!-- Rows added dynamically -->
+    </ul>
   </div>
-</nav>
 
-<div class="container my-4">
-  <!-- Hero / intro area -->
-  <div class="hero">
-    <h1>Welcome to the Release Board</h1>
-    <p>Stay updated with the latest stable releases of your favorite repositories.</p>
+  <!-- Footer (optional) -->
+  <div class="footer">
+    Powered by <a href="https://github.com/YourUsername/YourRepo" target="_blank">GitHub Actions &amp; Jekyll</a>
   </div>
 
-  <!-- Loading spinner (visible initially) -->
-  <div id="loading" class="text-center py-4">
-    <div class="spinner-border text-danger" role="status"></div>
-    <div>Loading releases...</div>
-  </div>
-
-  <!-- Table hidden by default (d-none), displayed once data is loaded -->
-  <div class="table-responsive d-none" id="table-container">
-    <table class="table table-striped table-hover text-center align-middle" id="release-table">
-      <thead>
-        <tr>
-          <th scope="col">Repository</th>
-          <th scope="col">Tag</th>
-          <th scope="col">Name</th>
-          <th scope="col">Published</th>
-          <th scope="col">Link</th>
-        </tr>
-      </thead>
-      <tbody id="release-tbody">
-        <!-- Populated by JavaScript -->
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- Footer -->
-<div class="footer">
-  <p>
-    Powered by GitHub Actions &amp; Jekyll<br />
-    <a href="https://github.com/YourUsername/YourRepo" target="_blank" rel="noopener">
-      View on GitHub
-    </a>
-  </p>
-</div>
-
-<script>
-  async function loadReleases() {
-    const loadingEl = document.getElementById('loading');
-    const tableContainerEl = document.getElementById('table-container');
-    const tbodyEl = document.getElementById('release-tbody');
-
-    try {
-      // Fetch your static JSON from docs/data/releases.json (adjust path if needed)
-      const response = await fetch('./data/releases.json');
-      if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-
-      const releases = await response.json();
-
-      // Build table rows
-      let rows = '';
-      releases.forEach(rel => {
-        rows += `
-          <tr>
-            <td>${rel.owner}/${rel.repo}</td>
-            <td>${rel.tag_name}</td>
-            <td>${rel.name}</td>
-            <td>${rel.published_at}</td>
-            <td>
-              <a href="${rel.html_url}" class="btn btn-sm btn-primary" target="_blank">View</a>
-            </td>
-          </tr>
-        `;
-      });
-
-      // Insert rows into table
-      tbodyEl.innerHTML = rows;
-
-      // Hide loading, show table
-      loadingEl.classList.add('d-none');
-      tableContainerEl.classList.remove('d-none');
-
-    } catch (err) {
-      loadingEl.innerHTML = `
-        <div class="alert alert-danger" role="alert">
-          Error loading releases: ${err.message}
-        </div>
-      `;
+  <script>
+    // Utility to show/hide
+    function toggleClass(element, className, shouldAdd) {
+      if (!element) return;
+      if (shouldAdd) {
+        element.classList.remove(className);
+      } else {
+        element.classList.add(className);
+      }
     }
-  }
 
-  // On page load, fetch and display releases
-  document.addEventListener('DOMContentLoaded', loadReleases);
-</script>
+    async function loadReleases() {
+      const loadingEl = document.getElementById("loading");
+      const releaseTable = document.getElementById("release-table");
 
+      try {
+        // Adjust path to your JSON file as needed
+        const response = await fetch("./data/releases.json");
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+        }
+
+        const releases = await response.json();
+
+        // Build <li> elements for each release
+        let rowsHTML = "";
+        releases.forEach((rel) => {
+          rowsHTML += `
+            <li class="table-row">
+              <div class="col col-1" data-label="Repository">${rel.owner}/${rel.repo}</div>
+              <div class="col col-2" data-label="Tag">${rel.tag_name}</div>
+              <div class="col col-3" data-label="Name">${rel.name}</div>
+              <div class="col col-4" data-label="Published">${rel.published_at}</div>
+              <div class="col col-5" data-label="Link">
+                <a href="${rel.html_url}" target="_blank" style="color: #58508d; font-weight: 600;">
+                  View
+                </a>
+              </div>
+            </li>
+          `;
+        });
+
+        // Insert rows
+        releaseTable.insertAdjacentHTML('beforeend', rowsHTML);
+
+        // Hide loading, show table
+        toggleClass(loadingEl, "d-none", false);         // Add 'd-none' to loading
+        toggleClass(releaseTable, "d-none", true);       // Remove 'd-none' from table
+      } catch (err) {
+        // Show error in loading area
+        loadingEl.innerHTML = `<p style="color: red; font-weight: 600;">
+          Error loading releases: ${err.message}
+        </p>`;
+      }
+    }
+
+    // On page load, fetch data
+    document.addEventListener("DOMContentLoaded", loadReleases);
+  </script>
 </body>
 </html>
