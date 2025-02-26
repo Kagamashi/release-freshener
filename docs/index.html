@@ -1,63 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>GitHub Main Releases Checker</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 2rem;
-    }
-    .repo-card {
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Stable Releases</title>
 </head>
 <body>
-  <h1>Latest Stable Releases (Cached Daily)</h1>
-  <div id="release-container">Loading...</div>
+  <h1>Latest Releases</h1>
+  <div id="content">Loading...</div>
 
   <script>
     async function loadReleases() {
-      const container = document.getElementById("release-container");
-      container.textContent = "Loading...";
-
+      const contentEl = document.getElementById("content");
       try {
-        // 1. Fetch the JSON file from your GitHub Pages site
-        //    Adjust the path if needed
         const response = await fetch("./data/releases.json");
-
-        if (!response.ok) {
-          throw new Error(`Failed to load releases.json: ${response.status}`);
-        }
-
-        // 2. Parse JSON
-        const data = await response.json();
-
-        // 3. Build HTML
-        let html = "";
-        data.forEach((release) => {
-          html += `
-            <div class="repo-card">
-              <h2>${release.owner}/${release.repo}</h2>
-              <p><strong>Tag:</strong> ${release.tag_name}</p>
-              <p><strong>Name:</strong> ${release.name}</p>
-              <p><strong>Published:</strong> ${release.published_at}</p>
-              <p><a href="${release.html_url}" target="_blank">View Release</a></p>
-            </div>
-          `;
-        });
-
-        container.innerHTML = html;
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const releases = await response.json();
+        contentEl.innerHTML = releases.map(r => `
+          <div style="margin-bottom: 1rem;">
+            <h2>${r.owner}/${r.repo}</h2>
+            <p>Tag: ${r.tag_name}</p>
+            <p>Name: ${r.name}</p>
+            <p>Published: ${r.published_at}</p>
+            <p><a href="${r.html_url}" target="_blank">View on GitHub</a></p>
+          </div>
+        `).join("");
       } catch (err) {
-        container.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+        contentEl.textContent = "Error loading releases: " + err.message;
       }
     }
 
-    // Load the JSON data once the page is ready
     loadReleases();
   </script>
 </body>
