@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from datetime import datetime
 
@@ -12,11 +13,9 @@ repos = [
 ]
 
 def get_latest_release(owner, repo):
-    """Fetch the latest release from GitHub for a given repository."""
+    """Fetch the first stable release from GitHub for a given repository."""
     url = f"{BASE_URL}/repos/{owner}/{repo}/releases"
-    headers = {}
-
-    response = requests.get(url, headers=headers)
+    response = requests.get(url)
     response.raise_for_status()  # Raise an error for bad status codes
 
     releases = response.json()
@@ -31,17 +30,13 @@ def get_latest_release(owner, repo):
         if "hotfix" in release["tag_name"].lower() or "hotfix" in (release["name"] or "").lower():
              continue
 
-        published_str = release["published_at"]
-        try:
-            published_dt = datetime.strptime(published_str, "%Y-%m-%dT%H:%M:%SZ")
-            published_date_formatted = published_dt.strftime("%d-%m-%Y")
-        except ValueError:
-            published_date_formatted = published_str
+        published_dt = datetime.strptime(release["published_at"], "%Y-%m-%dT%H:%M:%SZ")
+        published_date = published_dt.strftime("%d-%m-%Y")
 
         return {
             "tag_name": release["tag_name"],
             "html_url": release["html_url"],
-            "published_at": published_date_formatted
+            "published_at": published_date
         }
 
     return None
