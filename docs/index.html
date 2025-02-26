@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Stable Releases - Table</title>
+  <meta charset="UTF-8">
+  <title>Beautiful Release Board</title>
+  <!-- Google Fonts (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  >
+
   <!-- Bootstrap 5 CSS via CDN -->
   <link
     rel="stylesheet"
@@ -10,91 +18,190 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeo9Z/hh5c+G3GoOT6eNyVw6V9UfXGdZajp+STV8f2Hzhk25"
     crossorigin="anonymous"
   />
-</head>
-<body class="bg-light">
-  <div class="container my-5">
-    <h1 class="mb-4 text-center">Latest Stable Releases (Cached)</h1>
 
-    <!-- Center the content with Bootstrap row/col and offset -->
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-10 col-lg-8">
-
-        <!-- Loading spinner (visible initially) -->
-        <div id="loading" class="text-center py-4">
-          <div class="spinner-border" role="status"></div>
-          <div>Loading releases...</div>
-        </div>
-
-        <!-- Table hidden by default (d-none), shown once data is loaded -->
-        <div class="table-responsive d-none" id="table-container">
-          <table class="table table-bordered table-hover text-center align-middle" id="release-table">
-            <thead class="table-dark">
-              <tr>
-                <th>Repository</th>
-                <th>Tag</th>
-                <th>Name</th>
-                <th>Published</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody id="release-tbody">
-              <!-- Populated by JavaScript -->
-            </tbody>
-          </table>
-        </div>
-
-      </div> <!-- .col -->
-    </div> <!-- .row -->
-
-  </div> <!-- .container -->
-
-  <script>
-    async function loadReleases() {
-      const loadingEl = document.getElementById("loading");
-      const tableContainerEl = document.getElementById("table-container");
-      const tbodyEl = document.getElementById("release-tbody");
-
-      try {
-        // Fetch your static JSON from docs/data/releases.json (adjust path as needed)
-        const response = await fetch("./data/releases.json");
-        if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-
-        const releases = await response.json();
-
-        // Build table rows
-        let htmlRows = "";
-        releases.forEach((rel) => {
-          htmlRows += `
-            <tr>
-              <td>${rel.owner}/${rel.repo}</td>
-              <td>${rel.tag_name}</td>
-              <td>${rel.name}</td>
-              <td>${rel.published_at}</td>
-              <td>
-                <a href="${rel.html_url}" target="_blank" class="btn btn-sm btn-primary">
-                  View
-                </a>
-              </td>
-            </tr>
-          `;
-        });
-        tbodyEl.innerHTML = htmlRows;
-
-        // Hide loader, show table
-        loadingEl.classList.add("d-none");
-        tableContainerEl.classList.remove("d-none");
-      } catch (err) {
-        // If there's an error, show a message
-        loadingEl.innerHTML = `
-          <div class="alert alert-danger" role="alert">
-            Error loading releases: ${err.message}
-          </div>
-        `;
-      }
+  <!-- Custom Styles -->
+  <style>
+    /* Base font and gradient background */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    // Load data on page load
-    loadReleases();
-  </script>
+    /* Transparent navbar with subtle background */
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hero / jumbotron style */
+    .hero {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 40px 20px;
+      margin-bottom: 2rem;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 0;
+    }
+
+    /* Container for the table with a light background */
+    #table-container {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 2rem;
+    }
+
+    /* Table styling */
+    table {
+      background-color: #fff;
+    }
+
+    thead tr {
+      background-color: #4a5568; /* Dark grayish for header */
+      color: #fff;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f8f9fa; /* Subtle zebra stripes */
+    }
+
+    /* Footer at bottom */
+    .footer {
+      margin-top: auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: #f5576c;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Simple navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">Release Board</a>
+  </div>
+</nav>
+
+<div class="container my-4">
+  <!-- Hero / intro area -->
+  <div class="hero">
+    <h1>Welcome to the Release Board</h1>
+    <p>Stay updated with the latest stable releases of your favorite repositories.</p>
+  </div>
+
+  <!-- Loading spinner (visible initially) -->
+  <div id="loading" class="text-center py-4">
+    <div class="spinner-border text-danger" role="status"></div>
+    <div>Loading releases...</div>
+  </div>
+
+  <!-- Table hidden by default (d-none), displayed once data is loaded -->
+  <div class="table-responsive d-none" id="table-container">
+    <table class="table table-striped table-hover text-center align-middle" id="release-table">
+      <thead>
+        <tr>
+          <th scope="col">Repository</th>
+          <th scope="col">Tag</th>
+          <th scope="col">Name</th>
+          <th scope="col">Published</th>
+          <th scope="col">Link</th>
+        </tr>
+      </thead>
+      <tbody id="release-tbody">
+        <!-- Populated by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>
+    Powered by GitHub Actions &amp; Jekyll<br />
+    <a href="https://github.com/YourUsername/YourRepo" target="_blank" rel="noopener">
+      View on GitHub
+    </a>
+  </p>
+</div>
+
+<script>
+  async function loadReleases() {
+    const loadingEl = document.getElementById('loading');
+    const tableContainerEl = document.getElementById('table-container');
+    const tbodyEl = document.getElementById('release-tbody');
+
+    try {
+      // Fetch your static JSON from docs/data/releases.json (adjust path if needed)
+      const response = await fetch('./data/releases.json');
+      if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+
+      const releases = await response.json();
+
+      // Build table rows
+      let rows = '';
+      releases.forEach(rel => {
+        rows += `
+          <tr>
+            <td>${rel.owner}/${rel.repo}</td>
+            <td>${rel.tag_name}</td>
+            <td>${rel.name}</td>
+            <td>${rel.published_at}</td>
+            <td>
+              <a href="${rel.html_url}" class="btn btn-sm btn-primary" target="_blank">View</a>
+            </td>
+          </tr>
+        `;
+      });
+
+      // Insert rows into table
+      tbodyEl.innerHTML = rows;
+
+      // Hide loading, show table
+      loadingEl.classList.add('d-none');
+      tableContainerEl.classList.remove('d-none');
+
+    } catch (err) {
+      loadingEl.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+          Error loading releases: ${err.message}
+        </div>
+      `;
+    }
+  }
+
+  // On page load, fetch and display releases
+  document.addEventListener('DOMContentLoaded', loadReleases);
+</script>
+
 </body>
 </html>
