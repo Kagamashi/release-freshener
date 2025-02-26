@@ -70,7 +70,7 @@ def main():
     os.makedirs("data", exist_ok=True)
 
     # Write to JSON file
-    with open("data/releases.json", "w", encoding="utf-8") as f:
+    with open("docs/data/releases.json", "w", encoding="utf-8") as f:
         json.dump(result_data, f, indent=2)
 
 if __name__ == "__main__":
