@@ -12,7 +12,7 @@ repos = [
     # add new repos here following the syntax
 ]
 
-def get_latest_release(owner, repo):
+def get_latest_main_release(owner, repo):
     """Fetch the first stable release from GitHub for a given repository."""
     url = f"{BASE_URL}/repos/{owner}/{repo}/releases"
     response = requests.get(url)
@@ -42,16 +42,33 @@ def get_latest_release(owner, repo):
     return None
 
 def main():
+    result_data = []
     for item in repos:
-        result = get_latest_release(item["owner"], item["repo"])
-        if result:
-            print(f"{item['owner']}/{item['repo']}")
-            print(f"  - tag: {result['tag_name']}")
-            print(f"  - URL: {result['html_url']}")
-            print(f"  - published: {result['published_at']}")
-            print()
+        owner = item["owner"]
+        repo = item["repo"]
+        release_info = get_latest_main_release(owner, repo)
+        if release_info:
+            result_data.append({
+                "owner": owner,
+                "repo": repo,
+                **release_info
+            })
         else:
-            print(f"No releases found for {item['owner']}/{item['repo']}\n")
+            result_data.append({
+                "owner": owner,
+                "repo": repo,
+                "tag_name": "N/A",
+                "name": "No main release found",
+                "html_url": "#",
+                "published_at": "-"
+            })
+
+    # Ensure data directory exists
+    os.makedirs("data", exist_ok=True)
+
+    # Write to JSON file
+    with open("data/releases.json", "w", encoding="utf-8") as f:
+        json.dump(result_data, f, indent=2)
 
 if __name__ == "__main__":
     main()
