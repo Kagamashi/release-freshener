@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wider Published Column & Show Name</title>
+  <title>Latest Stable Releases</title>
   <style>
     /* Basic table styling & fixed layout */
     table {
       width: 100%;
       table-layout: fixed; /* Enforces column widths */
       border-collapse: collapse;
+      margin-top: 20px;
     }
     th, td {
       padding: 10px;
@@ -21,64 +22,91 @@
     th:nth-child(3), td:nth-child(3) { width: 15%; }
     th:nth-child(4), td:nth-child(4) { width: 25%; /* <— Wider column */ }
     th:nth-child(5), td:nth-child(5) { width: 20%; }
+
     thead {
       background-color: #574b90;
       color: #fff;
+    }
+
+    .loading {
+      margin-top: 30px;
+      font-style: italic;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-<table>
-  <thead>
-    <tr>
-      <th>Repository</th>
-      <th>Tag</th>
-      <th>Name</th>
-      <th>Published</th>
-      <th>Link</th>
-    </tr>
-  </thead>
-  <tbody id="release-body">
-    <!-- JavaScript will populate rows -->
-  </tbody>
-</table>
+  <h1>Latest Stable Releases</h1>
+  <div id="status" class="loading">Loading data...</div>
 
-<script>
-  // Example data (or fetch from releases.json)
-  const mockData = [
-    {
-      owner: "kedacore",
-      repo: "keda",
-      tag_name: "v2.16.1",
-      name: "KEDA Release 2.16.1",
-      published_at: "24-12-2024",
-      html_url: "https://github.com/kedacore/keda/releases/tag/v2.16.1"
-    },
-    {
-      owner: "istio",
-      repo: "istio",
-      tag_name: "1.23.5",
-      name: "Istio 1.23.5",
-      published_at: "13-02-2025",
-      html_url: "https://github.com/istio/istio/releases/tag/1.23.5"
-    }
-  ];
-
-  let html = "";
-  mockData.forEach(item => {
-    html += `
+  <table>
+    <thead>
       <tr>
-        <td>${item.owner}/${item.repo}</td>
-        <td>${item.tag_name}</td>
-        <td>${item.name || '—'}</td>
-        <td>${item.published_at}</td>
-        <td><a href="${item.html_url}" target="_blank">View</a></td>
+        <th>Repository</th>
+        <th>Tag</th>
+        <th>Name</th>
+        <th>Published</th>
+        <th>Link</th>
       </tr>
-    `;
-  });
-  document.getElementById("release-body").innerHTML = html;
-</script>
+    </thead>
+    <tbody id="release-body"></tbody>
+  </table>
+
+  <script>
+    async function loadReleases() {
+      const statusEl = document.getElementById("status");
+      const tbodyEl = document.getElementById("release-body");
+
+      try {
+        // Fetch the real data from docs/data/releases.json
+        // If this HTML file is also in docs/, use './data/releases.json'
+        // Adjust path if your structure is different
+        const response = await fetch("./data/releases.json");
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+        }
+        const releases = await response.json();
+
+        // Clear loading text
+        statusEl.innerText = "";
+
+        // Build table rows
+        let rows = "";
+        releases.forEach(item => {
+          rows += `
+            <tr>
+              <td>${item.owner}/${item.repo}</td>
+              <td>${item.tag_name}</td>
+              <td>${item.name || '—'}</td>
+              <td>${item.published_at}</td>
+              <td><a href="${item.html_url}" target="_blank">View</a></td>
+            </tr>
+          `;
+        });
+        tbodyEl.innerHTML = rows;
+
+        // If there are no releases at all, show a message
+        if (!releases.length) {
+          statusEl.innerText = "No releases found.";
+        }
+
+      } catch (err) {
+        // Display any error
+        statusEl.classList.remove("loading");
+        statusEl.classList.add("error");
+        statusEl.innerText = `Error: ${err.message}`;
+      }
+    }
+
+    // Initiate fetch on page load
+    document.addEventListener("DOMContentLoaded", loadReleases);
+  </script>
 
 </body>
 </html>
