@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GitHub Main Releases Checker</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+    .repo-card {
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .repo-card h2 {
+      margin: 0 0 0.5rem 0;
+    }
+    .loading {
+      font-style: italic;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>GitHub Main Releases</h1>
+  <div id="release-container" class="loading">Loading...</div>
+
+  <script>
+    // 1. Define your repositories here
+    const repos = [
+      { owner: "kedacore", repo: "keda" },
+      { owner: "istio", repo: "istio" },
+      // add more if you like
+    ];
+
+    // 2. A helper function to create a card for each repo's release
+    function createRepoCard(release) {
+      return `
+        <div class="repo-card">
+          <h2>${release.owner}/${release.repo}</h2>
+          <p><strong>Tag:</strong> ${release.tag_name}</p>
+          <p><strong>Name:</strong> ${release.name}</p>
+          <p><strong>Published:</strong> ${release.published_at}</p>
+          <p><a href="${release.html_url}" target="_blank">View Release on GitHub</a></p>
+        </div>
+      `;
+    }
+
+    // 3. Fetch releases from the GitHub API and filter out draft/pre-release/hotfix
+    async function fetchReleases() {
+      const container = document.getElementById("release-container");
+      container.innerHTML = "Loading...";
+
+      const results = [];
+
+      // Loop through each repo and fetch releases
+      for (const { owner, repo } of repos) {
+        try {
+          const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases`);
+          if (!response.ok) throw new Error(`Error fetching ${owner}/${repo}`);
+
+          const releases = await response.json();
+          // Find the first valid release
+          const stableRelease = releases.find((rel) =>
+            !rel.draft &&
+            !rel.prerelease &&
+            !(rel.tag_name.toLowerCase().includes("hotfix") ||
+              (rel.name || "").toLowerCase().includes("hotfix"))
+          );
+
+          if (stableRelease) {
+            // Format date as dd-mm-yyyy
+            const publishedDate = new Date(stableRelease.published_at);
+            const day = String(publishedDate.getDate()).padStart(2, "0");
+            const month = String(publishedDate.getMonth() + 1).padStart(2, "0");
+            const year = publishedDate.getFullYear();
+            const formattedDate = `${day}-${month}-${year}`;
+
+            results.push({
+              owner,
+              repo,
+              tag_name: stableRelease.tag_name,
+              name: stableRelease.name,
+              html_url: stableRelease.html_url,
+              published_at: formattedDate
+            });
+          } else {
+            // If there's no main release
+            results.push({
+              owner,
+              repo,
+              tag_name: "N/A",
+              name: "No main release found",
+              html_url: "#",
+              published_at: "-"
+            });
+          }
+        } catch (error) {
+          // Handle errors
+          results.push({
+            owner,
+            repo,
+            tag_name: "Error",
+            name: error.message,
+            html_url: "#",
+            published_at: "-"
+          });
+        }
+      }
+
+      // 4. Render the results
+      container.innerHTML = results.map(r => createRepoCard(r)).join("");
+      container.classList.remove("loading");
+    }
+
+    // 5. Fetch releases on page load
+    fetchReleases();
+  </script>
+</body>
+</html>
