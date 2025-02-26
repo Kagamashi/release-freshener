@@ -6,10 +6,12 @@ from datetime import datetime
 BASE_URL = "https://api.github.com"
 
 repos = [
+    {"owner": "kubernetes", "repo": "kubernetes"},
     {"owner": "kedacore", "repo": "keda"},
     {"owner": "istio", "repo": "istio"},
-    {"owner" : "argoproj", "repo": "argo-cd"},
-    # add new repos here following the syntax
+    {"owner": "argoproj", "repo": "argo-cd"},
+    {"owner": "hashicorp", "repo": "terraform"},
+    {"owner": "hashicorp", "repo": "terraform-provider-azurerm"},
 ]
 
 def get_latest_main_release(owner, repo):
