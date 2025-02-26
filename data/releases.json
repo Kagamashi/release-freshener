@@ -1,0 +1,50 @@
+[
+  {
+    "owner": "kubernetes",
+    "repo": "kubernetes",
+    "tag_name": "v1.32.2",
+    "name": "Kubernetes v1.32.2",
+    "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.32.2",
+    "published_at": "13-02-2025"
+  },
+  {
+    "owner": "kedacore",
+    "repo": "keda",
+    "tag_name": "v2.16.1",
+    "name": "v2.16.1",
+    "html_url": "https://github.com/kedacore/keda/releases/tag/v2.16.1",
+    "published_at": "24-12-2024"
+  },
+  {
+    "owner": "istio",
+    "repo": "istio",
+    "tag_name": "1.23.5",
+    "name": "Istio 1.23.5",
+    "html_url": "https://github.com/istio/istio/releases/tag/1.23.5",
+    "published_at": "13-02-2025"
+  },
+  {
+    "owner": "argoproj",
+    "repo": "argo-cd",
+    "tag_name": "v2.14.2",
+    "name": "v2.14.2",
+    "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v2.14.2",
+    "published_at": "06-02-2025"
+  },
+  {
+    "owner": "hashicorp",
+    "repo": "terraform",
+    "tag_name": "v1.10.5",
+    "name": "v1.10.5",
+    "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.10.5",
+    "published_at": "22-01-2025"
+  },
+  {
+    "owner": "hashicorp",
+    "repo": "terraform-provider-azurerm",
+    "tag_name": "v4.20.0",
+    "name": "v4.20.0",
+    "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.20.0",
+    "published_at": "20-02-2025"
+  }
+]
