@@ -6,7 +6,7 @@ BASE_URL = "https://api.github.com"
 repos = [
     {"owner": "kedacore", "repo": "keda"},
     {"owner": "istio", "repo": "istio"},
-    {"owner" : "argoproj", "repo": "argocd"},
+    {"owner" : "argoproj", "repo": "argo-cd"},
 ]
 
 def get_latest_release(owner, repo):
