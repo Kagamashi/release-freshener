@@ -37,6 +37,7 @@ def get_latest_main_release(owner, repo):
 
         return {
             "tag_name": release["tag_name"],
+            "name": release.get("name", ""),
             "html_url": release["html_url"],
             "published_at": published_date
         }

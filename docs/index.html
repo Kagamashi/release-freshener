@@ -2,174 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wider Columns Example</title>
+  <title>Wider Published Column & Show Name</title>
   <style>
-    /* Overall container for your card */
-    .card {
-      width: 500px; /* Adjust or use 100% plus max-width if you like */
-      background: #fff;
-      border-radius: 10px;
-      margin: 30px auto;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    h2 {
-      margin: 0 0 10px 0;
-    }
-
-    .spinner {
-      width: 30px;
-      height: 30px;
-      border: 4px solid #ddd;
-      border-top-color: #666;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 10px auto;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Responsive table wrapper allows horizontal scroll if needed */
-    .table-wrapper {
-      width: 100%;
-      overflow-x: auto; /* If table is too wide, a horizontal scroll will appear */
-      margin-top: 1rem;
-    }
-
-    /* The table with fixed layout to respect widths */
+    /* Basic table styling & fixed layout */
     table {
       width: 100%;
-      table-layout: fixed; /* Ensures columns respect assigned widths */
+      table-layout: fixed; /* Enforces column widths */
       border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
       text-align: left;
     }
-
+    /* Example widths */
+    th:nth-child(1), td:nth-child(1) { width: 25%; }
+    th:nth-child(2), td:nth-child(2) { width: 15%; }
+    th:nth-child(3), td:nth-child(3) { width: 15%; }
+    th:nth-child(4), td:nth-child(4) { width: 25%; /* <— Wider column */ }
+    th:nth-child(5), td:nth-child(5) { width: 20%; }
     thead {
       background-color: #574b90;
       color: #fff;
     }
-
-    th, td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    /* Set specific widths (in px or %) for each column */
-    th:nth-child(1), td:nth-child(1) { width: 30%; }
-    th:nth-child(2), td:nth-child(2) { width: 15%; }
-    th:nth-child(3), td:nth-child(3) { width: 15%; }
-    th:nth-child(4), td:nth-child(4) { width: 20%; }
-    th:nth-child(5), td:nth-child(5) { width: 20%; }
-
-    /* Make headers uppercase, etc. */
-    th {
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    /* Just for a bit of style */
-    tr:hover {
-      background-color: #f3f3f3;
-    }
-
-    /* Optional footnote or message under the table */
-    .footnote {
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 1rem;
-    }
   </style>
 </head>
-<body style="background: #d1c4e9; font-family: sans-serif;">
+<body>
 
-  <div class="card">
-    <h2>Latest Stable Releases</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Repository</th>
+      <th>Tag</th>
+      <th>Name</th>
+      <th>Published</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody id="release-body">
+    <!-- JavaScript will populate rows -->
+  </tbody>
+</table>
 
-    <!-- Loading indicator -->
-    <div id="loading" style="text-align:center;">
-      <div class="spinner"></div>
-      <p>Fetching data...</p>
-    </div>
-
-    <!-- Table container, hidden initially -->
-    <div class="table-wrapper d-none" id="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Repository</th>
-            <th>Tag</th>
-            <th>Name</th>
-            <th>Published</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody id="release-body">
-          <!-- Populated by JS -->
-        </tbody>
-      </table>
-      <div class="footnote" id="footnote"></div>
-    </div>
-  </div>
-
-  <script>
-    // Quick utility to show/hide
-    function toggleVisibility(id, hide) {
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.classList[hide ? 'add' : 'remove']('d-none');
+<script>
+  // Example data (or fetch from releases.json)
+  const mockData = [
+    {
+      owner: "kedacore",
+      repo: "keda",
+      tag_name: "v2.16.1",
+      name: "KEDA Release 2.16.1",
+      published_at: "24-12-2024",
+      html_url: "https://github.com/kedacore/keda/releases/tag/v2.16.1"
+    },
+    {
+      owner: "istio",
+      repo: "istio",
+      tag_name: "1.23.5",
+      name: "Istio 1.23.5",
+      published_at: "13-02-2025",
+      html_url: "https://github.com/istio/istio/releases/tag/1.23.5"
     }
+  ];
 
-    async function loadReleases() {
-      try {
-        const res = await fetch('./data/releases.json'); // Adjust path
-        if(!res.ok) {
-          throw new Error(`HTTP ${res.status} - ${res.statusText}`);
-        }
+  let html = "";
+  mockData.forEach(item => {
+    html += `
+      <tr>
+        <td>${item.owner}/${item.repo}</td>
+        <td>${item.tag_name}</td>
+        <td>${item.name || '—'}</td>
+        <td>${item.published_at}</td>
+        <td><a href="${item.html_url}" target="_blank">View</a></td>
+      </tr>
+    `;
+  });
+  document.getElementById("release-body").innerHTML = html;
+</script>
 
-        const data = await res.json();
-
-        // Build table rows
-        let htmlRows = '';
-        data.forEach(item => {
-          htmlRows += `
-            <tr>
-              <td>${item.owner}/${item.repo}</td>
-              <td>${item.tag_name}</td>
-              <td>${item.name || '—'}</td>
-              <td>${item.published_at}</td>
-              <td><a href="${item.html_url}" target="_blank">View</a></td>
-            </tr>
-          `;
-        });
-
-        // Insert rows
-        document.getElementById('release-body').innerHTML = htmlRows;
-
-        // Show the table, hide loading
-        toggleVisibility('table-container', false); // remove d-none
-        toggleVisibility('loading', true);          // add d-none
-
-        // Optional footnote
-        document.getElementById('footnote').innerText = 
-          `Showing ${data.length} repositories. Last fetched: ${new Date().toLocaleString()}`;
-      } catch (err) {
-        // Show error
-        document.getElementById('loading').innerHTML = 
-          `<p style="color:red; font-weight:600;">Error: ${err.message}</p>`;
-      }
-    }
-
-    // Hide or show an element with a helper class
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('table-container');
-      container.classList.add('d-none'); // Make sure it’s hidden initially
-      loadReleases();
-    });
-  </script>
 </body>
 </html>
