@@ -13,9 +13,7 @@ def get_latest_release(owner, repo):
     """Fetch the latest release from GitHub for a given repository."""
     url = f"{BASE_URL}/repos/{owner}/{repo}/releases"
     headers = {}
-    # if token:
-    #     headers["Authorization"] = f"token {token}"
-    
+
     response = requests.get(url, headers=headers)
     response.raise_for_status()  # Raise an error for bad status codes
 
