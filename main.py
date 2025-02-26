@@ -1,5 +1,6 @@
 import os
 import requests
+from datetime import datetime
 
 BASE_URL = "https://api.github.com"
 
@@ -18,8 +19,8 @@ def get_latest_release(owner, repo):
     response = requests.get(url, headers=headers)
     response.raise_for_status()  # Raise an error for bad status codes
 
-    data = response.json()
-    if not data:
+    releases = response.json()
+    if not releases:
         return None
     
     for release in releases:
@@ -30,12 +31,17 @@ def get_latest_release(owner, repo):
         if "hotfix" in release["tag_name"].lower() or "hotfix" in (release["name"] or "").lower():
              continue
 
+        published_str = release["published_at"]
+        try:
+            published_dt = datetime.strptime(published_str, "%Y-%m-%dT%H:%M:%SZ")
+            published_date_formatted = published_dt.strftime("%d-%m-%Y")
+        except ValueError:
+            published_date_formatted = published_str
+
         return {
-            "tag_name": latest["tag_name"],
-            # "name": latest.get("name", ""),
-            "html_url": latest["html_url"],
-            "published_at": latest["published_at"],
-            # "is_prerelease": latest["prerelease"]
+            "tag_name": release["tag_name"],
+            "html_url": release["html_url"],
+            "published_at": published_date_formatted
         }
 
     return None
@@ -44,12 +50,10 @@ def main():
     for item in repos:
         result = get_latest_release(item["owner"], item["repo"])
         if result:
-            print(f"Repo: {item['owner']}/{item['repo']}")
-            print(f"  - Release Tag: {result['tag_name']}")
-            # print(f"  - Release Name: {result['name']}")
+            print(f"{item['owner']}/{item['repo']}")
+            print(f"  - tag: {result['tag_name']}")
             print(f"  - URL: {result['html_url']}")
-            print(f"  - Published: {result['published_at']}")
-            # print(f"  - Pre-release?: {result['is_prerelease']}")
+            print(f"  - published: {result['published_at']}")
             print()
         else:
             print(f"No releases found for {item['owner']}/{item['repo']}\n")
