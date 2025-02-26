@@ -22,20 +22,23 @@ def get_latest_release(owner, repo):
     if not data:
         return None
     
-    # data[0] is typically the most recent release in GitHub's response
-    latest = data[0]  
-    
-    '''TO-DO
-    Some repos might mark a "pre-release" at index 0, so you might want
-    to loop until you find the first stable release if that’s your goal. '''
-    
-    return {
-        "tag_name": latest["tag_name"],
-        # "name": latest.get("name", ""),
-        "html_url": latest["html_url"],
-        "published_at": latest["published_at"],
-        "is_prerelease": latest["prerelease"]
-    }
+    for release in releases:
+        if release["draft"]:
+            continue
+        if release["prerelease"]:
+            continue
+        if "hotfix" in release["tag_name"].lower() or "hotfix" in (release["name"] or "").lower():
+             continue
+
+        return {
+            "tag_name": latest["tag_name"],
+            # "name": latest.get("name", ""),
+            "html_url": latest["html_url"],
+            "published_at": latest["published_at"],
+            # "is_prerelease": latest["prerelease"]
+        }
+
+    return None
 
 def main():
     for item in repos:
@@ -46,7 +49,7 @@ def main():
             # print(f"  - Release Name: {result['name']}")
             print(f"  - URL: {result['html_url']}")
             print(f"  - Published: {result['published_at']}")
-            print(f"  - Pre-release?: {result['is_prerelease']}")
+            # print(f"  - Pre-release?: {result['is_prerelease']}")
             print()
         else:
             print(f"No releases found for {item['owner']}/{item['repo']}\n")
