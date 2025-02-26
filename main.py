@@ -7,6 +7,7 @@ repos = [
     {"owner": "kedacore", "repo": "keda"},
     {"owner": "istio", "repo": "istio"},
     {"owner" : "argoproj", "repo": "argo-cd"},
+    # add new repos here following the syntax
 ]
 
 def get_latest_release(owner, repo):
@@ -19,18 +20,18 @@ def get_latest_release(owner, repo):
 
     data = response.json()
     if not data:
-        # If no releases found
         return None
     
     # data[0] is typically the most recent release in GitHub's response
     latest = data[0]  
     
-    # Some repos might mark a "pre-release" at index 0, so you might want
-    # to loop until you find the first stable release if that’s your goal.
+    '''TO-DO
+    Some repos might mark a "pre-release" at index 0, so you might want
+    to loop until you find the first stable release if that’s your goal. '''
     
     return {
         "tag_name": latest["tag_name"],
-        "name": latest.get("name", ""),
+        # "name": latest.get("name", ""),
         "html_url": latest["html_url"],
         "published_at": latest["published_at"],
         "is_prerelease": latest["prerelease"]
@@ -42,7 +43,7 @@ def main():
         if result:
             print(f"Repo: {item['owner']}/{item['repo']}")
             print(f"  - Release Tag: {result['tag_name']}")
-            print(f"  - Release Name: {result['name']}")
+            # print(f"  - Release Name: {result['name']}")
             print(f"  - URL: {result['html_url']}")
             print(f"  - Published: {result['published_at']}")
             print(f"  - Pre-release?: {result['is_prerelease']}")
