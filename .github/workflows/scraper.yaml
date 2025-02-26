@@ -1,4 +1,4 @@
-name: Generate JSON of stable releases
+name: generate-JSON-of-releases
 
 on:
   schedule:
