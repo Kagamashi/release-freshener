@@ -29,17 +29,34 @@ title: "Releases"
   color: #666;
 }
 
-/* Our table styling (cayman theme doesn't provide many built-in table styles) */
 .table-container {
   margin-top: 1rem;
-  overflow-x: auto;
+  overflow-x: auto; /* allows horizontal scroll if columns exceed container width */
 }
 
 table.releases-table {
   width: 100%;
-  table-layout: auto;
+  table-layout: fixed; /* enforce column widths below */
   border-collapse: collapse;
   margin-bottom: 1.5rem;
+}
+
+/* Force each column to a certain width % (sum <= 100%) */
+table.releases-table thead th:nth-child(1),
+table.releases-table tbody td:nth-child(1) {
+  width: 30%; 
+}
+table.releases-table thead th:nth-child(2),
+table.releases-table tbody td:nth-child(2) {
+  width: 15%;
+}
+table.releases-table thead th:nth-child(3),
+table.releases-table tbody td:nth-child(3) {
+  width: 15%;
+}
+table.releases-table thead th:nth-child(4),
+table.releases-table tbody td:nth-child(4) {
+  width: 40%;
 }
 
 table.releases-table th,
@@ -47,7 +64,7 @@ table.releases-table td {
   border: 1px solid #ccc;
   padding: 0.75rem;
   text-align: left;
-  word-break: break-word;
+  word-break: break-word; /* wrap long text instead of overflowing */
   vertical-align: top;
 }
 
@@ -60,7 +77,6 @@ tr:hover {
   background: #f9f9f9;
 }
 
-/* Button and input styling (optional) */
 .controls {
   display: flex;
   gap: 0.5rem;
@@ -72,10 +88,6 @@ tr:hover {
   padding: 0.5rem 0.75rem;
 }
 </style>
-
-<!-- <div class="hero">
-  <h1>{{ page.title }}</h1>
-</div> -->
 
 <div class="controls">
   <button id="refresh-btn" style="cursor:pointer;">Refresh</button>
@@ -118,18 +130,13 @@ async function loadReleases() {
     }
     const data = await response.json();
 
-    // If you set "last_fetched" in your Python script:
     if (data.last_fetched) {
       document.getElementById("last-updated").textContent = 
         "Last updated: " + data.last_fetched;
     }
 
-    // The array is either data (if old approach) or data.releases (if you store last_fetched, etc.)
     releases = data.releases || data;
-
-    // Sort by date descending
     sortByDateDesc(releases);
-
     renderTable(releases);
   } catch (err) {
     const tbody = document.getElementById("release-body");
