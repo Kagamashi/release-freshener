@@ -42,9 +42,25 @@
   {
     "owner": "hashicorp",
     "repo": "terraform-provider-azurerm",
-    "tag_name": "v4.20.0",
-    "name": "v4.20.0",
-    "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.20.0",
-    "published_at": "20-02-2025"
+    "tag_name": "v4.21.0",
+    "name": "v4.21.0",
+    "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.21.0",
+    "published_at": "27-02-2025"
+  },
+  {
+    "owner": "microsoft",
+    "repo": "terraform-provider-azuredevops",
+    "tag_name": "1.7.0",
+    "name": "v1.7.0",
+    "html_url": "https://github.com/microsoft/terraform-provider-azuredevops/releases/tag/1.7.0",
+    "published_at": "17-02-2025"
+  },
+  {
+    "owner": "elastic",
+    "repo": "elasticsearch",
+    "tag_name": "v7.17.28",
+    "name": "Elasticsearch 7.17.28",
+    "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v7.17.28",
+    "published_at": "25-02-2025"
   }
 ]
