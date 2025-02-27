@@ -2,161 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GitHub Releases - Sorted by Date</title>
+  <title>GitHub Main Releases</title>
+
+  <!-- Bootstrap 5 CSS via CDN -->
+  <link 
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeo9Z/hh5c+G3GoOT6eNyVw6V9UfXGdZajp+STV8f2Hzhk25"
+    crossorigin="anonymous"
+  />
+
   <style>
+    /* Optional: you can still add minor custom CSS if needed. */
     body {
       font-family: sans-serif;
-      margin: 20px;
+      background-color: #f8f9fa; /* Light grey background */
     }
-
-    /* Buttons and input styling */
-    .controls {
-      margin-bottom: 10px;
-    }
-    button {
-      padding: 6px 10px;
-      margin-right: 8px;
-      cursor: pointer;
-    }
-    input[type="text"] {
-      padding: 6px;
-      width: 200px;
-    }
-
-    /* Table styling (fixed layout) */
-    table {
-      width: 100%;
-      table-layout: fixed;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
-      text-align: left;
-      word-wrap: break-word;
-    }
-
-    thead {
+    .table thead {
       background-color: #574b90;
       color: #fff;
     }
-
-    /* Column widths */
-    th:nth-child(1), td:nth-child(1) { width: 30%; }
-    th:nth-child(2), td:nth-child(2) { width: 15%; }
-    th:nth-child(3), td:nth-child(3) { width: 25%; }
-    th:nth-child(4), td:nth-child(4) { width: 30%; }
-
-    tr:hover {
-      background-color: #f9f9f9;
+    /* Ensure columns don't collapse if text is wide */
+    table {
+      table-layout: fixed;
+      word-wrap: break-word;
     }
+    th:nth-child(1) { width: 25%; }
+    th:nth-child(2) { width: 15%; }
+    th:nth-child(3) { width: 20%; }
+    th:nth-child(4) { width: 40%; }
   </style>
 </head>
 <body>
 
-  <h1>GitHub Main Releases</h1>
-  <p>Daily-updated list of stable releases. Sorted by date (newest first) by default.</p>
+<!-- A simple Bootstrap navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Releases Dashboard</a>
+  </div>
+</nav>
 
-  <!-- Searching Controls (now only searching on the tag, if you like) -->
-  <div class="controls">
-    <input type="text" id="search-box" placeholder="Search in tag..." />
+<div class="container my-4">
+  <div class="row mb-3">
+    <div class="col">
+      <h1 class="h3">GitHub Main Releases</h1>
+      <p class="text-muted mb-0">
+        Daily-updated list of stable releases (sorted by date: newest first).
+      </p>
+    </div>
   </div>
 
-  <!-- Table -->
-  <table>
-    <thead>
-      <tr>
-        <th>Repository</th>
-        <th>Tag</th>
-        <th>Published</th>
-        <th>Link</th>
-      </tr>
-    </thead>
-    <tbody id="release-body">
-      <!-- Populated by JS -->
-    </tbody>
-  </table>
+  <!-- Search / Filter form -->
+  <div class="row mb-3">
+    <div class="col-12 col-sm-6">
+      <label for="search-box" class="form-label">Search by Tag:</label>
+      <input 
+        type="text" 
+        id="search-box" 
+        class="form-control" 
+        placeholder="e.g., v1.2.3"
+      />
+    </div>
+  </div>
 
-  <script>
-    let releases = []; // Will hold the fetched data
-    
-    document.addEventListener("DOMContentLoaded", init);
+  <!-- Responsive table container -->
+  <div class="table-responsive">
+    <table class="table table-hover align-middle" id="release-table">
+      <thead>
+        <tr>
+          <th scope="col">Repository</th>
+          <th scope="col">Tag</th>
+          <th scope="col">Published</th>
+          <th scope="col">Link</th>
+        </tr>
+      </thead>
+      <tbody id="release-body">
+        <!-- Populated by JS -->
+      </tbody>
+    </table>
+  </div>
+</div>
 
-    function init() {
-      // Attach event
-      document.getElementById("search-box").addEventListener("input", handleSearch);
+<script>
+  let releases = []; // Will store fetched data
 
-      // Fetch data then automatically sort by date
-      loadReleases();
-    }
+  document.addEventListener("DOMContentLoaded", init);
 
-    async function loadReleases() {
-      try {
-        const response = await fetch("./data/releases.json");
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-        }
-        releases = await response.json();
+  function init() {
+    document.getElementById("search-box").addEventListener("input", handleSearch);
+    loadReleases();
+  }
 
-        // Sort by date descending immediately
-        sortByDateDesc(releases);
-
-        // Render table
-        renderTable(releases);
-      } catch (err) {
-        const tbody = document.getElementById("release-body");
-        tbody.innerHTML = `<tr><td colspan="4" style="color:red;">Error: ${err.message}</td></tr>`;
+  async function loadReleases() {
+    try {
+      // Adjust the path to your JSON file if needed
+      const response = await fetch("./data/releases.json");
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status} - ${response.statusText}`);
       }
-    }
+      releases = await response.json();
 
-    // Sort in place
-    function sortByDateDesc(dataArray) {
-      dataArray.sort((a, b) => {
-        // Because date is dd-mm-yyyy, parse it to a real Date
-        const [dayA, monthA, yearA] = a.published_at.split("-").map(Number);
-        const dateA = new Date(yearA, monthA - 1, dayA);
+      // Default sort by date descending
+      sortByDateDesc(releases);
 
-        const [dayB, monthB, yearB] = b.published_at.split("-").map(Number);
-        const dateB = new Date(yearB, monthB - 1, dayB);
-
-        // newest first
-        return dateB - dateA;
-      });
-    }
-
-    function renderTable(data) {
+      // Render table
+      renderTable(releases);
+    } catch (err) {
       const tbody = document.getElementById("release-body");
-      tbody.innerHTML = "";
-
-      data.forEach(item => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${item.owner}/${item.repo}</td>
-          <td>${item.tag_name}</td>
-          <td>${item.published_at}</td>
-          <td><a href="${item.html_url}" target="_blank">View</a></td>
-        `;
-        tbody.appendChild(row);
-      });
+      tbody.innerHTML = `<tr><td colspan="4" class="text-danger fw-bold">Error: ${err.message}</td></tr>`;
     }
+  }
 
-    function handleSearch() {
-      const query = document.getElementById("search-box").value.trim().toLowerCase();
+  function renderTable(data) {
+    const tbody = document.getElementById("release-body");
+    tbody.innerHTML = "";
 
+    data.forEach(item => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${item.owner}/${item.repo}</td>
+        <td>${item.tag_name}</td>
+        <td>${item.published_at}</td>
+        <td><a href="${item.html_url}" target="_blank" class="btn btn-primary btn-sm">View</a></td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  function sortByDateDesc(arr) {
+    arr.sort((a, b) => {
+      const [dayA, monthA, yearA] = a.published_at.split("-").map(Number);
+      const dateA = new Date(yearA, monthA - 1, dayA);
+
+      const [dayB, monthB, yearB] = b.published_at.split("-").map(Number);
+      const dateB = new Date(yearB, monthB - 1, dayB);
+
+      return dateB - dateA; // newest first
+    });
+  }
+
+  function handleSearch() {
+    const query = document.getElementById("search-box").value.trim().toLowerCase();
+
+    if (!query) {
       // If empty, show all
-      if (!query) {
-        renderTable(releases);
-        return;
-      }
-
-      // Filter by tag_name (or you can pick another field)
-      const filtered = releases.filter(item =>
-        item.tag_name && item.tag_name.toLowerCase().includes(query)
-      );
-      renderTable(filtered);
+      renderTable(releases);
+      return;
     }
-  </script>
+
+    // Filter by tag_name
+    const filtered = releases.filter(item =>
+      item.tag_name.toLowerCase().includes(query)
+    );
+    renderTable(filtered);
+  }
+</script>
+
 </body>
 </html>
