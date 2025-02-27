@@ -1,11 +1,6 @@
-title: "My Jekyll Site"
-description: "A simple site powered by GitHub Pages."
-theme: jekyll-theme-primer
-
-# (Optional) If you'd like to configure Sass load paths or other custom settings:
-sass:
-  load_paths:
-    - assets/css
-
-# When building locally via `jekyll build`, it'll put the site in `docs/_site`
-# GitHub Pages automatically handles output though.
+title: "GitHub Main Releases"
+description: "A daily-updated stable releases dashboard"
+theme: jekyll-theme-cayman
+# If you want to enable optional plugins, you can:
+# plugins:
+#   - jekyll-seo-tag
