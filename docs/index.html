@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GitHub Main Releases</title>
+  <title>GitHub Main Releases - Click to Expand + Manual Refresh</title>
 
   <!-- Bootstrap 5 CSS via CDN -->
   <link 
@@ -29,26 +29,58 @@
     th:nth-child(2) { width: 15%; }
     th:nth-child(3) { width: 20%; }
     th:nth-child(4) { width: 40%; }
+
+    /* A style for our expand/collapse row. Hidden by default. */
+    .detail-row {
+      display: none;
+      background: #fdfdfd;
+    }
+    /* Indent detail content for clarity */
+    .detail-content {
+      padding: 10px 20px;
+      color: #666;
+      font-size: 0.95rem;
+    }
+    /* Simple arrow toggling */
+    .arrow {
+      cursor: pointer;
+      margin-right: 6px;
+      user-select: none;
+    }
+    .arrow::after {
+      content: '▶'; /* triangle pointing right by default */
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.2s ease-out;
+    }
+    .arrow.expanded::after {
+      transform: rotate(90deg); /* rotate arrow down when expanded */
+    }
   </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Releases Dashboard</a>
   </div>
 </nav>
 
+<!-- MAIN CONTAINER -->
 <div class="container my-4">
   <div class="row mb-3">
     <div class="col">
-      <h1 class="h3">GitHub Main Releases</h1>
-      <p class="text-muted mb-0">
-        Sorted by date (newest first). Search by <strong>Repository</strong> or <strong>Tag</strong>.
-      </p>
+      <h1 class="h3 mb-0">GitHub Main Releases</h1>
+      <p class="text-muted">Sorted by date (newest first). Click a row to see more info.</p>
+    </div>
+    <div class="col-auto d-flex align-items-end">
+      <!-- Refresh button: calls loadReleases() again -->
+      <button id="refresh-btn" class="btn btn-secondary">Refresh Data</button>
     </div>
   </div>
 
+  <!-- Search box if you still want it -->
   <div class="row mb-3">
     <div class="col-12 col-sm-6">
       <label for="search-box" class="form-label">Search (repo or tag):</label>
@@ -61,10 +93,12 @@
     </div>
   </div>
 
+  <!-- Table container -->
   <div class="table-responsive">
     <table class="table table-hover align-middle" id="release-table">
       <thead>
         <tr>
+          <th scope="col"></th> <!-- Arrow column -->
           <th scope="col">Repository</th>
           <th scope="col">Tag</th>
           <th scope="col">Published</th>
@@ -72,7 +106,7 @@
         </tr>
       </thead>
       <tbody id="release-body">
-        <!-- Populated by JS -->
+        <!-- Rows populated by JS -->
       </tbody>
     </table>
   </div>
@@ -84,13 +118,16 @@
   document.addEventListener("DOMContentLoaded", init);
 
   function init() {
+    // Attach events
+    document.getElementById("refresh-btn").addEventListener("click", loadReleases);
     document.getElementById("search-box").addEventListener("input", handleSearch);
+
+    // Initial load
     loadReleases();
   }
 
   async function loadReleases() {
     try {
-      // Adjust path to your JSON if needed
       const response = await fetch("./data/releases.json");
       if (!response.ok) {
         throw new Error(`HTTP ${response.status} - ${response.statusText}`);
@@ -100,16 +137,16 @@
       // Sort by date descending
       sortByDateDesc(releases);
 
-      // Render all
+      // Render
       renderTable(releases);
     } catch (err) {
       const tbody = document.getElementById("release-body");
-      tbody.innerHTML = `<tr><td colspan="4" class="text-danger fw-bold">Error: ${err.message}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" class="text-danger fw-bold">Error: ${err.message}</td></tr>`;
     }
   }
 
-  function sortByDateDesc(arr) {
-    arr.sort((a, b) => {
+  function sortByDateDesc(dataArray) {
+    dataArray.sort((a, b) => {
       const [dayA, monthA, yearA] = a.published_at.split("-").map(Number);
       const dateA = new Date(yearA, monthA - 1, dayA);
 
@@ -124,15 +161,52 @@
     const tbody = document.getElementById("release-body");
     tbody.innerHTML = "";
 
-    data.forEach(item => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
+    data.forEach((item, index) => {
+      /* ROW 1: main release info */
+      const mainRow = document.createElement("tr");
+      // We'll store an arrow cell for expanding/collapsing
+      mainRow.innerHTML = `
+        <td>
+          <span class="arrow" data-index="${index}"></span>
+        </td>
         <td>${item.owner}/${item.repo}</td>
         <td>${item.tag_name}</td>
         <td>${item.published_at}</td>
-        <td><a href="${item.html_url}" target="_blank" class="btn btn-primary btn-sm">View</a></td>
+        <td>
+          <a href="${item.html_url}" target="_blank" class="btn btn-primary btn-sm">View</a>
+        </td>
       `;
-      tbody.appendChild(row);
+
+      /* ROW 2: detail row (hidden by default) */
+      const detailRow = document.createElement("tr");
+      detailRow.classList.add("detail-row"); // hidden initially
+      detailRow.innerHTML = `
+        <td colspan="5" class="detail-content">
+          <strong>Extended Info:</strong><br/>
+          <!-- Demo text. Replace with real data from your JSON if available. -->
+          Repository owner: ${item.owner}<br/>
+          Repo: ${item.repo}<br/>
+          Tag: ${item.tag_name}<br/>
+          Published date: ${item.published_at}<br/>
+          <!-- If you captured more fields (e.g., release notes, author, raw timestamp), show them here. -->
+        </td>
+      `;
+
+      // Clicking the arrow toggles the detailRow
+      const arrowEl = mainRow.querySelector(".arrow");
+      arrowEl.addEventListener("click", (e) => {
+        e.stopPropagation(); // prevent row-click, or if you want row to click expand, you can do that
+        arrowEl.classList.toggle("expanded");
+        if (detailRow.style.display === "table-row") {
+          detailRow.style.display = "none";
+        } else {
+          detailRow.style.display = "table-row";
+        }
+      });
+
+      // Append the two rows
+      tbody.appendChild(mainRow);
+      tbody.appendChild(detailRow);
     });
   }
 
@@ -140,17 +214,15 @@
     const query = document.getElementById("search-box").value.trim().toLowerCase();
 
     if (!query) {
-      // If search is empty, show all
+      // Show all if empty
       renderTable(releases);
       return;
     }
 
     // Filter by repo or tag
-    // We'll combine "owner/repo" into a single string to compare
     const filtered = releases.filter(item => {
       const repoFull = (item.owner + "/" + item.repo).toLowerCase();
       const tag = item.tag_name.toLowerCase();
-
       return repoFull.includes(query) || tag.includes(query);
     });
 
