@@ -42,8 +42,8 @@ table.releases-table {
 }
 
 /* Adjust each column's width to your preference:
-   - 1st column (Repository): 30%
-   - 2nd column (Tag): 20%
+   - 1st column (Repository): 40%
+   - 2nd column (Tag): 15%
    - 3rd column (Published): 25%
    - 4th column (Link): 15%
    Total = 90% (10% leftover for spacing) */
@@ -97,7 +97,7 @@ tr:hover {
 
 <div class="controls">
   <button id="refresh-btn" style="cursor:pointer;">Refresh</button>
-  <input type="text" id="search-box" placeholder="Search repo/tag..." />
+  <input type="text" id="search-box" placeholder="Search..." />
   <span id="last-updated" style="margin-left:auto; color:#666;"></span>
 </div>
 
