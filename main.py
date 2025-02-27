@@ -69,12 +69,15 @@ def main():
                 "published_at": "-"
             })
 
+    output = {
+        "last_fetched": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
+        "releases": result_data
+    }
+    
     # Ensure data directory exists
-    os.makedirs("data", exist_ok=True)
-
-    # Write to JSON file
+    os.makedirs("docs/data", exist_ok=True)
     with open("docs/data/releases.json", "w", encoding="utf-8") as f:
-        json.dump(result_data, f, indent=2)
+        json.dump(output, f, indent=2)
 
 if __name__ == "__main__":
     main()

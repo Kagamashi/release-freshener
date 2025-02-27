@@ -2,7 +2,7 @@ name: generate-JSON-of-releases
 
 on:
   schedule:
-    # Run every day at 12:00 UTC (adjust if needed)
+    - cron: '0 6 * * *'
     - cron: "0 12 * * *"
   workflow_dispatch:
 
