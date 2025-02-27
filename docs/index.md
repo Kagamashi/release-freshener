@@ -77,10 +77,10 @@ table.releases-table td {
 
 table.releases-table thead {
   background-color: #722f37; /* a nice teal-ish color */
-  color: #fff;
+  color: white;
 }
 
-tr:hover {
+table.releases-table tbody tr:hover {
   background: #f9f9f9;
 }
 
