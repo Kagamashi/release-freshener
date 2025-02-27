@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GitHub Releases - Sorting & Searching</title>
+  <title>Releases</title>
   <style>
     body {
       font-family: sans-serif;
@@ -44,25 +44,19 @@
     }
 
     /* Example widths for columns */
-    th:nth-child(1), td:nth-child(1) { width: 25%; }
+    th:nth-child(1), td:nth-child(1) { width: 30%; }
     th:nth-child(2), td:nth-child(2) { width: 15%; }
-    th:nth-child(3), td:nth-child(3) { width: 20%; }
-    th:nth-child(4), td:nth-child(4) { width: 20%; }
-    th:nth-child(5), td:nth-child(5) { width: 20%; }
+    th:nth-child(3), td:nth-child(3) { width: 25%; }
+    th:nth-child(4), td:nth-child(4) { width: 30%; }
 
     tr:hover {
       background-color: #f9f9f9;
-    }
-
-    /* Simple highlight style if you want to highlight matched text */
-    .highlight {
-      background-color: yellow;
     }
   </style>
 </head>
 <body>
 
-  <h1>GitHub Main Releases</h1>
+  <h1>Releases</h1>
   <p>Daily-updated list of stable releases fetched by GitHub Actions.</p>
 
   <!-- Sorting & Searching Controls -->
@@ -77,7 +71,6 @@
       <tr>
         <th>Repository</th>
         <th>Tag</th>
-        <th>Name</th>
         <th>Published</th>
         <th>Link</th>
       </tr>
@@ -90,56 +83,39 @@
   <script>
     let releases = []; // Will hold the fetched data
     
-    // Called once page loads
     document.addEventListener("DOMContentLoaded", init);
 
     function init() {
-      // Attach events
-      document.getElementById("sort-date").addEventListener("click", sortByDateDesc);
+      // Attach event
       document.getElementById("search-box").addEventListener("input", handleSearch);
 
-      // Fetch the data and render table
+      // Fetch data then automatically sort by date
       loadReleases();
     }
 
     async function loadReleases() {
       try {
-        // Fetch from data/releases.json; adjust path if needed
         const response = await fetch("./data/releases.json");
         if (!response.ok) {
           throw new Error(`HTTP ${response.status} - ${response.statusText}`);
         }
-
         releases = await response.json();
+
+        // Sort by date descending immediately
+        sortByDateDesc(releases);
+
+        // Render table
         renderTable(releases);
       } catch (err) {
         const tbody = document.getElementById("release-body");
-        tbody.innerHTML = `<tr><td colspan="5" style="color:red;">Error: ${err.message}</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" style="color:red;">Error: ${err.message}</td></tr>`;
       }
     }
 
-    function renderTable(data) {
-      const tbody = document.getElementById("release-body");
-      tbody.innerHTML = "";
-
-      data.forEach(item => {
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
-          <td>${item.owner}/${item.repo}</td>
-          <td>${item.tag_name}</td>
-          <td>${item.name || '—'}</td>
-          <td>${item.published_at}</td>
-          <td><a href="${item.html_url}" target="_blank">View</a></td>
-        `;
-
-        tbody.appendChild(row);
-      });
-    }
-
-    function sortByDateDesc() {
-      // Because date is dd-mm-yyyy, parse to a real Date
-      releases.sort((a, b) => {
+    // Sort in place
+    function sortByDateDesc(dataArray) {
+      dataArray.sort((a, b) => {
+        // Because date is dd-mm-yyyy, parse it to a real Date
         const [dayA, monthA, yearA] = a.published_at.split("-").map(Number);
         const dateA = new Date(yearA, monthA - 1, dayA);
 
@@ -149,25 +125,39 @@
         // newest first
         return dateB - dateA;
       });
-      renderTable(releases);
+    }
+
+    function renderTable(data) {
+      const tbody = document.getElementById("release-body");
+      tbody.innerHTML = "";
+
+      data.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.owner}/${item.repo}</td>
+          <td>${item.tag_name}</td>
+          <td>${item.published_at}</td>
+          <td><a href="${item.html_url}" target="_blank">View</a></td>
+        `;
+        tbody.appendChild(row);
+      });
     }
 
     function handleSearch() {
       const query = document.getElementById("search-box").value.trim().toLowerCase();
 
+      // If empty, show all
       if (!query) {
-        // If empty, show all
         renderTable(releases);
         return;
       }
 
-      // Filter by name
+      // Filter by tag_name (or you can pick another field)
       const filtered = releases.filter(item =>
-        item.name && item.name.toLowerCase().includes(query)
+        item.tag_name && item.tag_name.toLowerCase().includes(query)
       );
       renderTable(filtered);
     }
-
   </script>
 </body>
 </html>
