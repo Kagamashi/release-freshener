@@ -47,11 +47,13 @@ table.releases-table td {
   border: 1px solid #ccc;
   padding: 0.75rem;
   text-align: left;
+  word-break: break-word;
+  vertical-align: top;
 }
 
 table.releases-table thead {
-  background-color: #468faf; /* a nice teal-ish color */
-  color: white;
+  background-color: #574b90; /* a nice teal-ish color */
+  color: #fff;
 }
 
 tr:hover {
@@ -71,9 +73,9 @@ tr:hover {
 }
 </style>
 
-<div class="hero">
+<!-- <div class="hero">
   <h1>{{ page.title }}</h1>
-</div>
+</div> -->
 
 <div class="controls">
   <button id="refresh-btn" style="cursor:pointer;">Refresh</button>
