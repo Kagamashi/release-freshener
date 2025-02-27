@@ -4,9 +4,13 @@ title: "Releases"
 ---
 
 <style>
-/* Override or augment the theme's CSS here */
+@media (min-width: 768px) {
+  .page-content {
+    max-width: 1200px !important;
+    margin: 0 auto;
+  }
+}
 
-/* A simple hero/banner area */
 .hero {
   background: #f4f8fa;
   padding: 1.5rem;
@@ -33,6 +37,7 @@ title: "Releases"
 
 table.releases-table {
   width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
   margin-bottom: 1.5rem;
 }
@@ -68,7 +73,6 @@ tr:hover {
 
 <div class="hero">
   <h1>{{ page.title }}</h1>
-  <p>Daily-updated stable releases.</p>
 </div>
 
 <div class="controls">
