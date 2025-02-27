@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Releases Dashboard"
+title: "Releases"
 ---
 
 <style>
@@ -68,7 +68,7 @@ tr:hover {
 
 <div class="hero">
   <h1>{{ page.title }}</h1>
-  <p>Daily-updated stable releases. Automatically sorted by date (newest first). Search for a repository or a tag. </p>
+  <p>Daily-updated stable releases.</p>
 </div>
 
 <div class="controls">
