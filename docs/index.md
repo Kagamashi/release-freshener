@@ -28,48 +28,54 @@ title: "Releases"
   margin: 0;
   color: #666;
 }
-
 .table-container {
   margin-top: 1rem;
-  overflow-x: auto; /* allows horizontal scroll if columns exceed container width */
+  overflow-x: auto;
 }
 
 table.releases-table {
   width: 100%;
-  table-layout: fixed; /* enforce column widths below */
+  /* Enforce the column widths we specify below */
+  table-layout: fixed; 
   border-collapse: collapse;
   margin-bottom: 1.5rem;
 }
 
-/* Force each column to a certain width % (sum <= 100%) */
+/* Adjust each column's width to your preference:
+   - 1st column (Repository): 30%
+   - 2nd column (Tag): 20%
+   - 3rd column (Published): 25%
+   - 4th column (Link): 15%
+   Total = 90% (10% leftover for spacing) */
 table.releases-table thead th:nth-child(1),
 table.releases-table tbody td:nth-child(1) {
-  width: 30%; 
+  width: 30%;
 }
 table.releases-table thead th:nth-child(2),
 table.releases-table tbody td:nth-child(2) {
-  width: 15%;
+  width: 20%;
 }
 table.releases-table thead th:nth-child(3),
 table.releases-table tbody td:nth-child(3) {
-  width: 15%;
+  width: 25%;
 }
 table.releases-table thead th:nth-child(4),
 table.releases-table tbody td:nth-child(4) {
-  width: 40%;
+  width: 15%;
 }
 
+/* Borders and spacing */
 table.releases-table th,
 table.releases-table td {
   border: 1px solid #ccc;
   padding: 0.75rem;
   text-align: left;
-  word-break: break-word; /* wrap long text instead of overflowing */
+  word-break: break-word; /* ensures long text wraps instead of overflowing */
   vertical-align: top;
 }
 
 table.releases-table thead {
-  background-color: #574b90; /* a nice teal-ish color */
+  background-color: #722f37; /* a nice teal-ish color */
   color: #fff;
 }
 
