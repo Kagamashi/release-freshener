@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Releases</title>
+  <title>GitHub Releases - Sorted by Date</title>
   <style>
     body {
       font-family: sans-serif;
@@ -23,10 +23,10 @@
       width: 200px;
     }
 
-    /* Table styling (similar to your existing layout) */
+    /* Table styling (fixed layout) */
     table {
       width: 100%;
-      table-layout: fixed; /* for consistent column widths */
+      table-layout: fixed;
       border-collapse: collapse;
       margin-top: 10px;
     }
@@ -35,7 +35,7 @@
       padding: 10px;
       border: 1px solid #ccc;
       text-align: left;
-      word-wrap: break-word; /* so text doesn’t overflow if wide */
+      word-wrap: break-word;
     }
 
     thead {
@@ -43,7 +43,7 @@
       color: #fff;
     }
 
-    /* Example widths for columns */
+    /* Column widths */
     th:nth-child(1), td:nth-child(1) { width: 30%; }
     th:nth-child(2), td:nth-child(2) { width: 15%; }
     th:nth-child(3), td:nth-child(3) { width: 25%; }
@@ -56,13 +56,12 @@
 </head>
 <body>
 
-  <h1>Releases</h1>
-  <p>Daily-updated list of stable releases fetched by GitHub Actions.</p>
+  <h1>GitHub Main Releases</h1>
+  <p>Daily-updated list of stable releases. Sorted by date (newest first) by default.</p>
 
-  <!-- Sorting & Searching Controls -->
+  <!-- Searching Controls (now only searching on the tag, if you like) -->
   <div class="controls">
-    <button id="sort-date">Sort By Date (Newest First)</button>
-    <input type="text" id="search-box" placeholder="Search release name..." />
+    <input type="text" id="search-box" placeholder="Search in tag..." />
   </div>
 
   <!-- Table -->
