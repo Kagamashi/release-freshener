@@ -49,11 +49,11 @@ table.releases-table {
    Total = 90% (10% leftover for spacing) */
 table.releases-table thead th:nth-child(1),
 table.releases-table tbody td:nth-child(1) {
-  width: 30%;
+  width: 40%;
 }
 table.releases-table thead th:nth-child(2),
 table.releases-table tbody td:nth-child(2) {
-  width: 20%;
+  width: 15%;
 }
 table.releases-table thead th:nth-child(3),
 table.releases-table tbody td:nth-child(3) {
