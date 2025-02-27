@@ -39,6 +39,7 @@ table.releases-table {
   table-layout: fixed; 
   border-collapse: collapse;
   margin-bottom: 1.5rem;
+  border: 1px solid #722f37;
 }
 
 /* Adjust each column's width to your preference:
