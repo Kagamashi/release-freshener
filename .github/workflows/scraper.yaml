@@ -29,6 +29,6 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add data/releases.json
+          git add docs/data/releases.json
           git commit -m "Update stable releases JSON [skip ci]" || echo "No changes to commit"
           git push
