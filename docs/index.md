@@ -76,8 +76,12 @@ table.releases-table td {
 }
 
 table.releases-table thead {
-  background-color: #722f37; /* a nice teal-ish color */
+  background-color: #722f37; /* Deep wine color */
   color: white;
+}
+
+table.releases-table thead th {
+  color: white !important;
 }
 
 table.releases-table tbody tr:hover {
