@@ -2,49 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Latest Stable Releases</title>
+  <title>GitHub Releases - Sorting & Searching</title>
   <style>
-    /* Basic table styling & fixed layout */
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+
+    /* Buttons and input styling */
+    .controls {
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 6px 10px;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+    input[type="text"] {
+      padding: 6px;
+      width: 200px;
+    }
+
+    /* Table styling (similar to your existing layout) */
     table {
       width: 100%;
-      table-layout: fixed; /* Enforces column widths */
+      table-layout: fixed; /* for consistent column widths */
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-top: 10px;
     }
+
     th, td {
       padding: 10px;
       border: 1px solid #ccc;
       text-align: left;
+      word-wrap: break-word; /* so text doesn’t overflow if wide */
     }
-    /* Example widths */
-    th:nth-child(1), td:nth-child(1) { width: 25%; }
-    th:nth-child(2), td:nth-child(2) { width: 15%; }
-    th:nth-child(3), td:nth-child(3) { width: 15%; }
-    th:nth-child(4), td:nth-child(4) { width: 25%; /* <— Wider column */ }
-    th:nth-child(5), td:nth-child(5) { width: 20%; }
 
     thead {
       background-color: #574b90;
       color: #fff;
     }
 
-    .loading {
-      margin-top: 30px;
-      font-style: italic;
+    /* Example widths for columns */
+    th:nth-child(1), td:nth-child(1) { width: 25%; }
+    th:nth-child(2), td:nth-child(2) { width: 15%; }
+    th:nth-child(3), td:nth-child(3) { width: 20%; }
+    th:nth-child(4), td:nth-child(4) { width: 20%; }
+    th:nth-child(5), td:nth-child(5) { width: 20%; }
+
+    tr:hover {
+      background-color: #f9f9f9;
     }
 
-    .error {
-      color: red;
-      font-weight: bold;
-      margin-top: 30px;
+    /* Simple highlight style if you want to highlight matched text */
+    .highlight {
+      background-color: yellow;
     }
   </style>
 </head>
 <body>
 
-  <h1>Latest Stable Releases</h1>
-  <div id="status" class="loading">Loading data...</div>
+  <h1>GitHub Main Releases</h1>
+  <p>Daily-updated list of stable releases fetched by GitHub Actions.</p>
 
+  <!-- Sorting & Searching Controls -->
+  <div class="controls">
+    <button id="sort-date">Sort By Date (Newest First)</button>
+    <input type="text" id="search-box" placeholder="Search release name..." />
+  </div>
+
+  <!-- Table -->
   <table>
     <thead>
       <tr>
@@ -55,58 +82,92 @@
         <th>Link</th>
       </tr>
     </thead>
-    <tbody id="release-body"></tbody>
+    <tbody id="release-body">
+      <!-- Populated by JS -->
+    </tbody>
   </table>
 
   <script>
-    async function loadReleases() {
-      const statusEl = document.getElementById("status");
-      const tbodyEl = document.getElementById("release-body");
+    let releases = []; // Will hold the fetched data
+    
+    // Called once page loads
+    document.addEventListener("DOMContentLoaded", init);
 
+    function init() {
+      // Attach events
+      document.getElementById("sort-date").addEventListener("click", sortByDateDesc);
+      document.getElementById("search-box").addEventListener("input", handleSearch);
+
+      // Fetch the data and render table
+      loadReleases();
+    }
+
+    async function loadReleases() {
       try {
-        // Fetch the real data from docs/data/releases.json
-        // If this HTML file is also in docs/, use './data/releases.json'
-        // Adjust path if your structure is different
+        // Fetch from data/releases.json; adjust path if needed
         const response = await fetch("./data/releases.json");
         if (!response.ok) {
           throw new Error(`HTTP ${response.status} - ${response.statusText}`);
         }
-        const releases = await response.json();
 
-        // Clear loading text
-        statusEl.innerText = "";
-
-        // Build table rows
-        let rows = "";
-        releases.forEach(item => {
-          rows += `
-            <tr>
-              <td>${item.owner}/${item.repo}</td>
-              <td>${item.tag_name}</td>
-              <td>${item.name || '—'}</td>
-              <td>${item.published_at}</td>
-              <td><a href="${item.html_url}" target="_blank">View</a></td>
-            </tr>
-          `;
-        });
-        tbodyEl.innerHTML = rows;
-
-        // If there are no releases at all, show a message
-        if (!releases.length) {
-          statusEl.innerText = "No releases found.";
-        }
-
+        releases = await response.json();
+        renderTable(releases);
       } catch (err) {
-        // Display any error
-        statusEl.classList.remove("loading");
-        statusEl.classList.add("error");
-        statusEl.innerText = `Error: ${err.message}`;
+        const tbody = document.getElementById("release-body");
+        tbody.innerHTML = `<tr><td colspan="5" style="color:red;">Error: ${err.message}</td></tr>`;
       }
     }
 
-    // Initiate fetch on page load
-    document.addEventListener("DOMContentLoaded", loadReleases);
-  </script>
+    function renderTable(data) {
+      const tbody = document.getElementById("release-body");
+      tbody.innerHTML = "";
 
+      data.forEach(item => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${item.owner}/${item.repo}</td>
+          <td>${item.tag_name}</td>
+          <td>${item.name || '—'}</td>
+          <td>${item.published_at}</td>
+          <td><a href="${item.html_url}" target="_blank">View</a></td>
+        `;
+
+        tbody.appendChild(row);
+      });
+    }
+
+    function sortByDateDesc() {
+      // Because date is dd-mm-yyyy, parse to a real Date
+      releases.sort((a, b) => {
+        const [dayA, monthA, yearA] = a.published_at.split("-").map(Number);
+        const dateA = new Date(yearA, monthA - 1, dayA);
+
+        const [dayB, monthB, yearB] = b.published_at.split("-").map(Number);
+        const dateB = new Date(yearB, monthB - 1, dayB);
+
+        // newest first
+        return dateB - dateA;
+      });
+      renderTable(releases);
+    }
+
+    function handleSearch() {
+      const query = document.getElementById("search-box").value.trim().toLowerCase();
+
+      if (!query) {
+        // If empty, show all
+        renderTable(releases);
+        return;
+      }
+
+      // Filter by name
+      const filtered = releases.filter(item =>
+        item.name && item.name.toLowerCase().includes(query)
+      );
+      renderTable(filtered);
+    }
+
+  </script>
 </body>
 </html>
