@@ -1,6 +1,6 @@
-title: "GitHub Main Releases"
-description: "A daily-updated stable releases dashboard"
-theme: jekyll-theme-cayman
+title: "Releases"
+description: ""
+theme: jekyll-theme-modernist
 # If you want to enable optional plugins, you can:
 # plugins:
 #   - jekyll-seo-tag
