@@ -13,16 +13,14 @@
   />
 
   <style>
-    /* Optional: you can still add minor custom CSS if needed. */
     body {
       font-family: sans-serif;
-      background-color: #f8f9fa; /* Light grey background */
+      background-color: #f8f9fa;
     }
     .table thead {
       background-color: #574b90;
       color: #fff;
     }
-    /* Ensure columns don't collapse if text is wide */
     table {
       table-layout: fixed;
       word-wrap: break-word;
@@ -35,7 +33,6 @@
 </head>
 <body>
 
-<!-- A simple Bootstrap navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Releases Dashboard</a>
@@ -47,25 +44,23 @@
     <div class="col">
       <h1 class="h3">GitHub Main Releases</h1>
       <p class="text-muted mb-0">
-        Daily-updated list of stable releases (sorted by date: newest first).
+        Sorted by date (newest first). Search by <strong>Repository</strong> or <strong>Tag</strong>.
       </p>
     </div>
   </div>
 
-  <!-- Search / Filter form -->
   <div class="row mb-3">
     <div class="col-12 col-sm-6">
-      <label for="search-box" class="form-label">Search by Tag:</label>
+      <label for="search-box" class="form-label">Search (repo or tag):</label>
       <input 
         type="text" 
         id="search-box" 
         class="form-control" 
-        placeholder="e.g., v1.2.3"
+        placeholder="e.g., kubernetes, v1.2.3..."
       />
     </div>
   </div>
 
-  <!-- Responsive table container -->
   <div class="table-responsive">
     <table class="table table-hover align-middle" id="release-table">
       <thead>
@@ -84,7 +79,7 @@
 </div>
 
 <script>
-  let releases = []; // Will store fetched data
+  let releases = [];
 
   document.addEventListener("DOMContentLoaded", init);
 
@@ -95,22 +90,34 @@
 
   async function loadReleases() {
     try {
-      // Adjust the path to your JSON file if needed
+      // Adjust path to your JSON if needed
       const response = await fetch("./data/releases.json");
       if (!response.ok) {
         throw new Error(`HTTP ${response.status} - ${response.statusText}`);
       }
       releases = await response.json();
 
-      // Default sort by date descending
+      // Sort by date descending
       sortByDateDesc(releases);
 
-      // Render table
+      // Render all
       renderTable(releases);
     } catch (err) {
       const tbody = document.getElementById("release-body");
       tbody.innerHTML = `<tr><td colspan="4" class="text-danger fw-bold">Error: ${err.message}</td></tr>`;
     }
+  }
+
+  function sortByDateDesc(arr) {
+    arr.sort((a, b) => {
+      const [dayA, monthA, yearA] = a.published_at.split("-").map(Number);
+      const dateA = new Date(yearA, monthA - 1, dayA);
+
+      const [dayB, monthB, yearB] = b.published_at.split("-").map(Number);
+      const dateB = new Date(yearB, monthB - 1, dayB);
+
+      return dateB - dateA; // newest first
+    });
   }
 
   function renderTable(data) {
@@ -129,31 +136,24 @@
     });
   }
 
-  function sortByDateDesc(arr) {
-    arr.sort((a, b) => {
-      const [dayA, monthA, yearA] = a.published_at.split("-").map(Number);
-      const dateA = new Date(yearA, monthA - 1, dayA);
-
-      const [dayB, monthB, yearB] = b.published_at.split("-").map(Number);
-      const dateB = new Date(yearB, monthB - 1, dayB);
-
-      return dateB - dateA; // newest first
-    });
-  }
-
   function handleSearch() {
     const query = document.getElementById("search-box").value.trim().toLowerCase();
 
     if (!query) {
-      // If empty, show all
+      // If search is empty, show all
       renderTable(releases);
       return;
     }
 
-    // Filter by tag_name
-    const filtered = releases.filter(item =>
-      item.tag_name.toLowerCase().includes(query)
-    );
+    // Filter by repo or tag
+    // We'll combine "owner/repo" into a single string to compare
+    const filtered = releases.filter(item => {
+      const repoFull = (item.owner + "/" + item.repo).toLowerCase();
+      const tag = item.tag_name.toLowerCase();
+
+      return repoFull.includes(query) || tag.includes(query);
+    });
+
     renderTable(filtered);
   }
 </script>
