@@ -5,6 +5,7 @@ from datetime import datetime
 
 BASE_URL = "https://api.github.com"
 
+# specify tools you want to follow
 repos = [
     {"owner": "kubernetes", "repo": "kubernetes"},
     {"owner": "kedacore", "repo": "keda"},
@@ -12,6 +13,8 @@ repos = [
     {"owner": "argoproj", "repo": "argo-cd"},
     {"owner": "hashicorp", "repo": "terraform"},
     {"owner": "hashicorp", "repo": "terraform-provider-azurerm"},
+    {"owner": "microsoft", "repo": "terraform-provider-azuredevops"},
+    {"owner": "elastic", "repo": "elasticsearch"},
 ]
 
 def get_latest_main_release(owner, repo):
