@@ -33,7 +33,7 @@ def get_latest_main_release(owner, repo):
         if release["prerelease"]:
             continue
         if "hotfix" in release["tag_name"].lower() or "hotfix" in (release["name"] or "").lower():
-             continue
+            continue
 
         published_dt = datetime.strptime(release["published_at"], "%Y-%m-%dT%H:%M:%SZ")
         published_date = published_dt.strftime("%d-%m-%Y")
