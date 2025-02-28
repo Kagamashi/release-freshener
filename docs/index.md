@@ -103,7 +103,7 @@ table.releases-table tbody tr:hover {
 <div class="controls">
   <button id="refresh-btn" style="cursor:pointer;">Refresh</button>
   <input type="text" id="search-box" placeholder="Search..." />
-  <span id="last-updated" style="margin-left:auto; color:#666;"></span>
+  <!-- <span id="last-updated" style="margin-left:auto; color:#666;"></span> -->
 </div>
 
 <div class="table-container">
@@ -120,6 +120,10 @@ table.releases-table tbody tr:hover {
       <!-- Populated by JS -->
     </tbody>
   </table>
+</div>
+
+<div class="controls">
+  <span id="last-updated" style="margin-left:auto; color:#666;"></span>
 </div>
 
 <script>
