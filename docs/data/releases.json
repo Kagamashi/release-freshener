@@ -1,66 +1,69 @@
-[
-  {
-    "owner": "kubernetes",
-    "repo": "kubernetes",
-    "tag_name": "v1.32.2",
-    "name": "Kubernetes v1.32.2",
-    "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.32.2",
-    "published_at": "13-02-2025"
-  },
-  {
-    "owner": "kedacore",
-    "repo": "keda",
-    "tag_name": "v2.16.1",
-    "name": "v2.16.1",
-    "html_url": "https://github.com/kedacore/keda/releases/tag/v2.16.1",
-    "published_at": "24-12-2024"
-  },
-  {
-    "owner": "istio",
-    "repo": "istio",
-    "tag_name": "1.23.5",
-    "name": "Istio 1.23.5",
-    "html_url": "https://github.com/istio/istio/releases/tag/1.23.5",
-    "published_at": "13-02-2025"
-  },
-  {
-    "owner": "argoproj",
-    "repo": "argo-cd",
-    "tag_name": "v2.14.2",
-    "name": "v2.14.2",
-    "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v2.14.2",
-    "published_at": "06-02-2025"
-  },
-  {
-    "owner": "hashicorp",
-    "repo": "terraform",
-    "tag_name": "v1.11.0",
-    "name": "v1.11.0",
-    "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.11.0",
-    "published_at": "27-02-2025"
-  },
-  {
-    "owner": "hashicorp",
-    "repo": "terraform-provider-azurerm",
-    "tag_name": "v4.21.0",
-    "name": "v4.21.0",
-    "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.21.0",
-    "published_at": "27-02-2025"
-  },
-  {
-    "owner": "microsoft",
-    "repo": "terraform-provider-azuredevops",
-    "tag_name": "1.7.0",
-    "name": "v1.7.0",
-    "html_url": "https://github.com/microsoft/terraform-provider-azuredevops/releases/tag/1.7.0",
-    "published_at": "17-02-2025"
-  },
-  {
-    "owner": "elastic",
-    "repo": "elasticsearch",
-    "tag_name": "v7.17.28",
-    "name": "Elasticsearch 7.17.28",
-    "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v7.17.28",
-    "published_at": "25-02-2025"
-  }
-]
+{
+  "last_fetched": "2025-02-28 06:20 UTC",
+  "releases": [
+    {
+      "owner": "kubernetes",
+      "repo": "kubernetes",
+      "tag_name": "v1.32.2",
+      "name": "Kubernetes v1.32.2",
+      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.32.2",
+      "published_at": "13-02-2025"
+    },
+    {
+      "owner": "kedacore",
+      "repo": "keda",
+      "tag_name": "v2.16.1",
+      "name": "v2.16.1",
+      "html_url": "https://github.com/kedacore/keda/releases/tag/v2.16.1",
+      "published_at": "24-12-2024"
+    },
+    {
+      "owner": "istio",
+      "repo": "istio",
+      "tag_name": "1.23.5",
+      "name": "Istio 1.23.5",
+      "html_url": "https://github.com/istio/istio/releases/tag/1.23.5",
+      "published_at": "13-02-2025"
+    },
+    {
+      "owner": "argoproj",
+      "repo": "argo-cd",
+      "tag_name": "v2.14.2",
+      "name": "v2.14.2",
+      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v2.14.2",
+      "published_at": "06-02-2025"
+    },
+    {
+      "owner": "hashicorp",
+      "repo": "terraform",
+      "tag_name": "v1.11.0",
+      "name": "v1.11.0",
+      "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.11.0",
+      "published_at": "27-02-2025"
+    },
+    {
+      "owner": "hashicorp",
+      "repo": "terraform-provider-azurerm",
+      "tag_name": "v4.21.0",
+      "name": "v4.21.0",
+      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.21.0",
+      "published_at": "27-02-2025"
+    },
+    {
+      "owner": "microsoft",
+      "repo": "terraform-provider-azuredevops",
+      "tag_name": "1.7.0",
+      "name": "v1.7.0",
+      "html_url": "https://github.com/microsoft/terraform-provider-azuredevops/releases/tag/1.7.0",
+      "published_at": "17-02-2025"
+    },
+    {
+      "owner": "elastic",
+      "repo": "elasticsearch",
+      "tag_name": "v7.17.28",
+      "name": "Elasticsearch 7.17.28",
+      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v7.17.28",
+      "published_at": "25-02-2025"
+    }
+  ]
+}
