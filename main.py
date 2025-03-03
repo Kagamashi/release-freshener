@@ -15,6 +15,7 @@ repos = [
     {"owner": "hashicorp", "repo": "terraform-provider-azurerm"},
     {"owner": "microsoft", "repo": "terraform-provider-azuredevops"},
     {"owner": "elastic", "repo": "elasticsearch"},
+    {"owner": "kubernetes-sigs", "repo": "kubebuilder"},
 ]
 
 def get_latest_main_release(owner, repo):
