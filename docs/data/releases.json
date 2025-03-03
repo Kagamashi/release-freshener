@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-03-03 06:22 UTC",
+  "last_fetched": "2025-03-03 12:33 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -64,6 +64,14 @@
       "name": "Elasticsearch 7.17.28",
       "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v7.17.28",
       "published_at": "25-02-2025"
+    },
+    {
+      "owner": "kubernetes-sigs",
+      "repo": "kubebuilder",
+      "tag_name": "v4.5.1",
+      "name": "v4.5.1",
+      "html_url": "https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v4.5.1",
+      "published_at": "21-02-2025"
     }
   ]
 }
