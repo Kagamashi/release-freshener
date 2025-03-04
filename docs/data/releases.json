@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-03-03 12:33 UTC",
+  "last_fetched": "2025-03-04 06:20 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -20,10 +20,10 @@
     {
       "owner": "istio",
       "repo": "istio",
-      "tag_name": "1.23.5",
-      "name": "Istio 1.23.5",
-      "html_url": "https://github.com/istio/istio/releases/tag/1.23.5",
-      "published_at": "13-02-2025"
+      "tag_name": "1.25.0",
+      "name": "Istio 1.25.0",
+      "html_url": "https://github.com/istio/istio/releases/tag/1.25.0",
+      "published_at": "04-03-2025"
     },
     {
       "owner": "argoproj",
@@ -72,6 +72,14 @@
       "name": "v4.5.1",
       "html_url": "https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v4.5.1",
       "published_at": "21-02-2025"
+    },
+    {
+      "owner": "kubernetes-sigs",
+      "repo": "kustomize",
+      "tag_name": "kyaml/v0.19.0",
+      "name": "kyaml/v0.19.0",
+      "html_url": "https://github.com/kubernetes-sigs/kustomize/releases/tag/kyaml/v0.19.0",
+      "published_at": "14-01-2025"
     }
   ]
 }
