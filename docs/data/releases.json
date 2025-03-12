@@ -1,13 +1,13 @@
 {
-  "last_fetched": "2025-03-11 12:33 UTC",
+  "last_fetched": "2025-03-12 06:21 UTC",
   "releases": [
     {
       "owner": "kubernetes",
       "repo": "kubernetes",
-      "tag_name": "v1.32.2",
-      "name": "Kubernetes v1.32.2",
-      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.32.2",
-      "published_at": "13-02-2025"
+      "tag_name": "v1.32.3",
+      "name": "Kubernetes v1.32.3",
+      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.32.3",
+      "published_at": "12-03-2025"
     },
     {
       "owner": "kedacore",
