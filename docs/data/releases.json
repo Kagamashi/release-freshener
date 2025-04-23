@@ -1,13 +1,13 @@
 {
-  "last_fetched": "2025-04-22 12:34 UTC",
+  "last_fetched": "2025-04-23 06:22 UTC",
   "releases": [
     {
       "owner": "kubernetes",
       "repo": "kubernetes",
-      "tag_name": "v1.32.3",
-      "name": "Kubernetes v1.32.3",
-      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.32.3",
-      "published_at": "12-03-2025"
+      "tag_name": "v1.32.4",
+      "name": "Kubernetes v1.32.4",
+      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.32.4",
+      "published_at": "23-04-2025"
     },
     {
       "owner": "kedacore",
@@ -28,10 +28,10 @@
     {
       "owner": "argoproj",
       "repo": "argo-cd",
-      "tag_name": "v2.14.10",
-      "name": "v2.14.10",
-      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v2.14.10",
-      "published_at": "15-04-2025"
+      "tag_name": "v2.14.11",
+      "name": "v2.14.11",
+      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v2.14.11",
+      "published_at": "22-04-2025"
     },
     {
       "owner": "hashicorp",
