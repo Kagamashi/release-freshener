@@ -1,12 +1,12 @@
 {
-  "last_fetched": "2025-04-23 12:35 UTC",
+  "last_fetched": "2025-04-24 06:23 UTC",
   "releases": [
     {
       "owner": "kubernetes",
       "repo": "kubernetes",
-      "tag_name": "v1.32.4",
-      "name": "Kubernetes v1.32.4",
-      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.32.4",
+      "tag_name": "v1.33.0",
+      "name": "Kubernetes v1.33.0",
+      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.33.0",
       "published_at": "23-04-2025"
     },
     {
