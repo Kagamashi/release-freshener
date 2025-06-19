@@ -1,21 +1,21 @@
 {
-  "last_fetched": "2025-06-18 12:38 UTC",
+  "last_fetched": "2025-06-19 06:24 UTC",
   "releases": [
     {
       "owner": "kubernetes",
       "repo": "kubernetes",
-      "tag_name": "v1.33.1",
-      "name": "Kubernetes v1.33.1",
-      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.33.1",
-      "published_at": "15-05-2025"
+      "tag_name": "v1.33.2",
+      "name": "Kubernetes v1.33.2",
+      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.33.2",
+      "published_at": "18-06-2025"
     },
     {
       "owner": "kedacore",
       "repo": "keda",
-      "tag_name": "v2.17.1",
-      "name": "v2.17.1",
-      "html_url": "https://github.com/kedacore/keda/releases/tag/v2.17.1",
-      "published_at": "15-05-2025"
+      "tag_name": "v2.17.2",
+      "name": "v2.17.2",
+      "html_url": "https://github.com/kedacore/keda/releases/tag/v2.17.2",
+      "published_at": "18-06-2025"
     },
     {
       "owner": "istio",
