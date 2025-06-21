@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-06-20 12:37 UTC",
+  "last_fetched": "2025-06-21 06:22 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -20,10 +20,10 @@
     {
       "owner": "istio",
       "repo": "istio",
-      "tag_name": "1.26.1",
-      "name": "Istio 1.26.1",
-      "html_url": "https://github.com/istio/istio/releases/tag/1.26.1",
-      "published_at": "29-05-2025"
+      "tag_name": "1.26.2",
+      "name": "Istio 1.26.2",
+      "html_url": "https://github.com/istio/istio/releases/tag/1.26.2",
+      "published_at": "20-06-2025"
     },
     {
       "owner": "argoproj",
@@ -44,10 +44,10 @@
     {
       "owner": "hashicorp",
       "repo": "terraform-provider-azurerm",
-      "tag_name": "v4.33.0",
-      "name": "v4.33.0",
-      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.33.0",
-      "published_at": "12-06-2025"
+      "tag_name": "v4.34.0",
+      "name": "v4.34.0",
+      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.34.0",
+      "published_at": "20-06-2025"
     },
     {
       "owner": "microsoft",
