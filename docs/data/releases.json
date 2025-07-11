@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-07-10 12:39 UTC",
+  "last_fetched": "2025-07-11 12:37 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -28,10 +28,10 @@
     {
       "owner": "argoproj",
       "repo": "argo-cd",
-      "tag_name": "v2.14.15",
-      "name": "v2.14.15",
-      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v2.14.15",
-      "published_at": "16-06-2025"
+      "tag_name": "v3.0.11",
+      "name": "v3.0.11",
+      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.0.11",
+      "published_at": "10-07-2025"
     },
     {
       "owner": "hashicorp",
@@ -44,10 +44,10 @@
     {
       "owner": "hashicorp",
       "repo": "terraform-provider-azurerm",
-      "tag_name": "v4.35.0",
-      "name": "v4.35.0",
-      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.35.0",
-      "published_at": "01-07-2025"
+      "tag_name": "v4.36.0",
+      "name": "v4.36.0",
+      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.36.0",
+      "published_at": "10-07-2025"
     },
     {
       "owner": "microsoft",
