@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-07-23 06:26 UTC",
+  "last_fetched": "2025-07-23 12:40 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -76,10 +76,10 @@
     {
       "owner": "kubernetes-sigs",
       "repo": "kustomize",
-      "tag_name": "kyaml/v0.20.0",
-      "name": "kyaml/v0.20.0",
-      "html_url": "https://github.com/kubernetes-sigs/kustomize/releases/tag/kyaml/v0.20.0",
-      "published_at": "28-06-2025"
+      "tag_name": "kyaml/v0.20.1",
+      "name": "kyaml/v0.20.1",
+      "html_url": "https://github.com/kubernetes-sigs/kustomize/releases/tag/kyaml/v0.20.1",
+      "published_at": "23-07-2025"
     }
   ]
 }
