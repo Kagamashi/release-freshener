@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-08-20 12:37 UTC",
+  "last_fetched": "2025-08-21 06:34 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -36,10 +36,10 @@
     {
       "owner": "hashicorp",
       "repo": "terraform",
-      "tag_name": "v1.12.2",
-      "name": "v1.12.2",
-      "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.12.2",
-      "published_at": "11-06-2025"
+      "tag_name": "v1.13.0",
+      "name": "v1.13.0",
+      "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.13.0",
+      "published_at": "20-08-2025"
     },
     {
       "owner": "hashicorp",
