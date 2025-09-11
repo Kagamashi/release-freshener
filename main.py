@@ -17,6 +17,7 @@ repos = [
     {"owner": "elastic", "repo": "elasticsearch"},
     {"owner": "kubernetes-sigs", "repo": "kubebuilder"},
     {"owner": "kubernetes-sigs", "repo": "kustomize"},
+    {"owner": "8gears", "repo": "n8n-helm-chart"},
 ]
 
 def get_latest_main_release(owner, repo):
@@ -83,3 +84,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
