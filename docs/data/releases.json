@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-10-08 06:24 UTC",
+  "last_fetched": "2025-10-08 12:37 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -12,10 +12,10 @@
     {
       "owner": "kedacore",
       "repo": "keda",
-      "tag_name": "v2.17.2",
-      "name": "v2.17.2",
-      "html_url": "https://github.com/kedacore/keda/releases/tag/v2.17.2",
-      "published_at": "18-06-2025"
+      "tag_name": "v2.18.0",
+      "name": "v2.18.0",
+      "html_url": "https://github.com/kedacore/keda/releases/tag/v2.18.0",
+      "published_at": "08-10-2025"
     },
     {
       "owner": "istio",
