@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-11-06 12:38 UTC",
+  "last_fetched": "2025-11-07 06:25 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -44,10 +44,10 @@
     {
       "owner": "hashicorp",
       "repo": "terraform-provider-azurerm",
-      "tag_name": "v4.51.0",
-      "name": "v4.51.0",
-      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.51.0",
-      "published_at": "30-10-2025"
+      "tag_name": "v4.52.0",
+      "name": "v4.52.0",
+      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.52.0",
+      "published_at": "06-11-2025"
     },
     {
       "owner": "microsoft",
