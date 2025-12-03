@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-12-02 06:28 UTC",
+  "last_fetched": "2025-12-03 06:27 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -60,10 +60,10 @@
     {
       "owner": "elastic",
       "repo": "elasticsearch",
-      "tag_name": "v9.2.1",
-      "name": "Elasticsearch 9.2.1",
-      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.2.1",
-      "published_at": "11-11-2025"
+      "tag_name": "v9.2.2",
+      "name": "Elasticsearch 9.2.2",
+      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.2.2",
+      "published_at": "02-12-2025"
     },
     {
       "owner": "kubernetes-sigs",
@@ -84,10 +84,10 @@
     {
       "owner": "8gears",
       "repo": "n8n-helm-chart",
-      "tag_name": "2.0.0",
-      "name": "2.0.0",
-      "html_url": "https://github.com/8gears/n8n-helm-chart/releases/tag/2.0.0",
-      "published_at": "01-12-2025"
+      "tag_name": "2.0.1",
+      "name": "2.0.1",
+      "html_url": "https://github.com/8gears/n8n-helm-chart/releases/tag/2.0.1",
+      "published_at": "02-12-2025"
     }
   ]
 }
