@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-12-10 12:41 UTC",
+  "last_fetched": "2025-12-11 06:29 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -52,10 +52,10 @@
     {
       "owner": "microsoft",
       "repo": "terraform-provider-azuredevops",
-      "tag_name": "v1.11.2",
-      "name": "v1.11.2",
-      "html_url": "https://github.com/microsoft/terraform-provider-azuredevops/releases/tag/v1.11.2",
-      "published_at": "19-08-2025"
+      "tag_name": "v1.12.0",
+      "name": "v1.12.0",
+      "html_url": "https://github.com/microsoft/terraform-provider-azuredevops/releases/tag/v1.12.0",
+      "published_at": "11-12-2025"
     },
     {
       "owner": "elastic",
