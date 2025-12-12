@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2025-12-11 12:42 UTC",
+  "last_fetched": "2025-12-12 06:28 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -36,18 +36,18 @@
     {
       "owner": "hashicorp",
       "repo": "terraform",
-      "tag_name": "v1.14.1",
-      "name": "v1.14.1",
-      "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.14.1",
-      "published_at": "03-12-2025"
+      "tag_name": "v1.14.2",
+      "name": "v1.14.2",
+      "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.14.2",
+      "published_at": "11-12-2025"
     },
     {
       "owner": "hashicorp",
       "repo": "terraform-provider-azurerm",
-      "tag_name": "v4.55.0",
-      "name": "v4.55.0",
-      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.55.0",
-      "published_at": "04-12-2025"
+      "tag_name": "v4.56.0",
+      "name": "v4.56.0",
+      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.56.0",
+      "published_at": "11-12-2025"
     },
     {
       "owner": "microsoft",
