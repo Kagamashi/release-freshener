@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-02-02 06:59 UTC",
+  "last_fetched": "2026-02-02 12:57 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -12,10 +12,10 @@
     {
       "owner": "kedacore",
       "repo": "keda",
-      "tag_name": "v2.18.3",
-      "name": "v2.18.3",
-      "html_url": "https://github.com/kedacore/keda/releases/tag/v2.18.3",
-      "published_at": "22-12-2025"
+      "tag_name": "v2.19.0",
+      "name": "v2.19.0",
+      "html_url": "https://github.com/kedacore/keda/releases/tag/v2.19.0",
+      "published_at": "02-02-2026"
     },
     {
       "owner": "istio",
@@ -28,10 +28,10 @@
     {
       "owner": "argoproj",
       "repo": "argo-cd",
-      "tag_name": "v3.2.6",
-      "name": "v3.2.6",
-      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.2.6",
-      "published_at": "22-01-2026"
+      "tag_name": "v3.3.0",
+      "name": "v3.3.0",
+      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.3.0",
+      "published_at": "02-02-2026"
     },
     {
       "owner": "hashicorp",
