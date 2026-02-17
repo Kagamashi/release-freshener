@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-02-16 13:00 UTC",
+  "last_fetched": "2026-02-17 06:55 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -20,10 +20,10 @@
     {
       "owner": "istio",
       "repo": "istio",
-      "tag_name": "1.27.6",
-      "name": "Istio 1.27.6",
-      "html_url": "https://github.com/istio/istio/releases/tag/1.27.6",
-      "published_at": "10-02-2026"
+      "tag_name": "1.29.0",
+      "name": "Istio 1.29.0",
+      "html_url": "https://github.com/istio/istio/releases/tag/1.29.0",
+      "published_at": "16-02-2026"
     },
     {
       "owner": "argoproj",
@@ -68,10 +68,10 @@
     {
       "owner": "kubernetes-sigs",
       "repo": "kubebuilder",
-      "tag_name": "v4.11.1",
-      "name": "v4.11.1",
-      "html_url": "https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v4.11.1",
-      "published_at": "27-01-2026"
+      "tag_name": "v4.12.0",
+      "name": "v4.12.0",
+      "html_url": "https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v4.12.0",
+      "published_at": "16-02-2026"
     },
     {
       "owner": "kubernetes-sigs",
