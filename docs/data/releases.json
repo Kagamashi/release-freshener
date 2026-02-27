@@ -1,13 +1,13 @@
 {
-  "last_fetched": "2026-02-26 13:03 UTC",
+  "last_fetched": "2026-02-27 06:49 UTC",
   "releases": [
     {
       "owner": "kubernetes",
       "repo": "kubernetes",
-      "tag_name": "v1.35.1",
-      "name": "v1.35.1",
-      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.35.1",
-      "published_at": "10-02-2026"
+      "tag_name": "v1.35.2",
+      "name": "v1.35.2",
+      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.35.2",
+      "published_at": "27-02-2026"
     },
     {
       "owner": "kedacore",
@@ -44,10 +44,10 @@
     {
       "owner": "hashicorp",
       "repo": "terraform-provider-azurerm",
-      "tag_name": "v4.61.0",
-      "name": "v4.61.0",
-      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.61.0",
-      "published_at": "19-02-2026"
+      "tag_name": "v4.62.0",
+      "name": "v4.62.0",
+      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.62.0",
+      "published_at": "26-02-2026"
     },
     {
       "owner": "microsoft",
@@ -60,10 +60,10 @@
     {
       "owner": "elastic",
       "repo": "elasticsearch",
-      "tag_name": "v9.3.0",
-      "name": "Elasticsearch 9.3.0",
-      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.3.0",
-      "published_at": "03-02-2026"
+      "tag_name": "v9.3.1",
+      "name": "Elasticsearch 9.3.1",
+      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.3.1",
+      "published_at": "26-02-2026"
     },
     {
       "owner": "kubernetes-sigs",
