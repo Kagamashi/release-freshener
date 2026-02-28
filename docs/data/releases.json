@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-02-27 12:56 UTC",
+  "last_fetched": "2026-02-28 06:34 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -68,10 +68,10 @@
     {
       "owner": "kubernetes-sigs",
       "repo": "kubebuilder",
-      "tag_name": "v4.12.0",
-      "name": "v4.12.0",
-      "html_url": "https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v4.12.0",
-      "published_at": "16-02-2026"
+      "tag_name": "v4.13.0",
+      "name": "v4.13.0",
+      "html_url": "https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v4.13.0",
+      "published_at": "27-02-2026"
     },
     {
       "owner": "kubernetes-sigs",
