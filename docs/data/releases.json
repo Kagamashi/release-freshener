@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-03-25 06:58 UTC",
+  "last_fetched": "2026-03-25 13:08 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -36,10 +36,10 @@
     {
       "owner": "hashicorp",
       "repo": "terraform",
-      "tag_name": "v1.14.7",
-      "name": "v1.14.7",
-      "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.14.7",
-      "published_at": "11-03-2026"
+      "tag_name": "v1.14.8",
+      "name": "v1.14.8",
+      "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.14.8",
+      "published_at": "25-03-2026"
     },
     {
       "owner": "hashicorp",
@@ -68,10 +68,10 @@
     {
       "owner": "kubernetes-sigs",
       "repo": "kubebuilder",
-      "tag_name": "v4.13.0",
-      "name": "v4.13.0",
-      "html_url": "https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v4.13.0",
-      "published_at": "27-02-2026"
+      "tag_name": "v4.13.1",
+      "name": "v4.13.1",
+      "html_url": "https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v4.13.1",
+      "published_at": "25-03-2026"
     },
     {
       "owner": "kubernetes-sigs",
