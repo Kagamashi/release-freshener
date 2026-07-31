@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-07-30 13:56 UTC",
+  "last_fetched": "2026-07-31 08:44 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -12,10 +12,10 @@
     {
       "owner": "kedacore",
       "repo": "keda",
-      "tag_name": "v2.20.1",
-      "name": "v2.20.1",
-      "html_url": "https://github.com/kedacore/keda/releases/tag/v2.20.1",
-      "published_at": "08-06-2026"
+      "tag_name": "v2.20.2",
+      "name": "v2.20.2",
+      "html_url": "https://github.com/kedacore/keda/releases/tag/v2.20.2",
+      "published_at": "31-07-2026"
     },
     {
       "owner": "istio",
@@ -44,10 +44,10 @@
     {
       "owner": "hashicorp",
       "repo": "terraform-provider-azurerm",
-      "tag_name": "v5.0.0",
-      "name": "v5.0.0",
-      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v5.0.0",
-      "published_at": "28-07-2026"
+      "tag_name": "v5.0.1",
+      "name": "v5.0.1",
+      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v5.0.1",
+      "published_at": "30-07-2026"
     },
     {
       "owner": "microsoft",
