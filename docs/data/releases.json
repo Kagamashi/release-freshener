@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-08-04 08:30 UTC",
+  "last_fetched": "2026-08-04 14:06 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -28,10 +28,10 @@
     {
       "owner": "argoproj",
       "repo": "argo-cd",
-      "tag_name": "v3.4.6",
-      "name": "v3.4.6",
-      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.4.6",
-      "published_at": "31-07-2026"
+      "tag_name": "v3.5.0",
+      "name": "v3.5.0",
+      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.5.0",
+      "published_at": "04-08-2026"
     },
     {
       "owner": "hashicorp",
@@ -60,10 +60,10 @@
     {
       "owner": "elastic",
       "repo": "elasticsearch",
-      "tag_name": "v9.4.4",
-      "name": "Elasticsearch 9.4.4",
-      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.4.4",
-      "published_at": "21-07-2026"
+      "tag_name": "v9.5.0",
+      "name": "Elasticsearch 9.5.0",
+      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.5.0",
+      "published_at": "04-08-2026"
     },
     {
       "owner": "kubernetes-sigs",
