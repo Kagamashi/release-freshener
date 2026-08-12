@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-08-11 12:59 UTC",
+  "last_fetched": "2026-08-12 07:18 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -60,10 +60,10 @@
     {
       "owner": "elastic",
       "repo": "elasticsearch",
-      "tag_name": "v9.5.0",
-      "name": "Elasticsearch 9.5.0",
-      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.5.0",
-      "published_at": "04-08-2026"
+      "tag_name": "v9.5.1",
+      "name": "Elasticsearch 9.5.1",
+      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.5.1",
+      "published_at": "11-08-2026"
     },
     {
       "owner": "kubernetes-sigs",
