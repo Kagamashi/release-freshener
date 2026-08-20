@@ -1,13 +1,13 @@
 {
-  "last_fetched": "2026-08-20 06:38 UTC",
+  "last_fetched": "2026-08-20 12:43 UTC",
   "releases": [
     {
       "owner": "kubernetes",
       "repo": "kubernetes",
-      "tag_name": "v1.36.3",
-      "name": "v1.36.3",
-      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.36.3",
-      "published_at": "23-07-2026"
+      "tag_name": "v1.36.4",
+      "name": "v1.36.4",
+      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.36.4",
+      "published_at": "20-08-2026"
     },
     {
       "owner": "kedacore",
