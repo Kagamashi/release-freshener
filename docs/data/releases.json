@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-08-20 12:43 UTC",
+  "last_fetched": "2026-08-21 06:39 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -44,10 +44,10 @@
     {
       "owner": "hashicorp",
       "repo": "terraform-provider-azurerm",
-      "tag_name": "v5.1.0",
-      "name": "v5.1.0",
-      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v5.1.0",
-      "published_at": "13-08-2026"
+      "tag_name": "v5.2.0",
+      "name": "v5.2.0",
+      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v5.2.0",
+      "published_at": "20-08-2026"
     },
     {
       "owner": "microsoft",
@@ -60,10 +60,10 @@
     {
       "owner": "elastic",
       "repo": "elasticsearch",
-      "tag_name": "v9.5.1",
-      "name": "Elasticsearch 9.5.1",
-      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.5.1",
-      "published_at": "11-08-2026"
+      "tag_name": "v9.5.2",
+      "name": "Elasticsearch 9.5.2",
+      "html_url": "https://github.com/elastic/elasticsearch/releases/tag/v9.5.2",
+      "published_at": "20-08-2026"
     },
     {
       "owner": "kubernetes-sigs",
