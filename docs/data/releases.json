@@ -1,13 +1,13 @@
 {
-  "last_fetched": "2026-08-26 12:47 UTC",
+  "last_fetched": "2026-08-27 17:17 UTC",
   "releases": [
     {
       "owner": "kubernetes",
       "repo": "kubernetes",
-      "tag_name": "v1.36.4",
-      "name": "v1.36.4",
-      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.36.4",
-      "published_at": "20-08-2026"
+      "tag_name": "v1.37.0",
+      "name": "v1.37.0",
+      "html_url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.37.0",
+      "published_at": "26-08-2026"
     },
     {
       "owner": "kedacore",
@@ -20,26 +20,26 @@
     {
       "owner": "istio",
       "repo": "istio",
-      "tag_name": "1.30.3",
-      "name": "Istio 1.30.3",
-      "html_url": "https://github.com/istio/istio/releases/tag/1.30.3",
-      "published_at": "16-07-2026"
+      "tag_name": "1.30.4",
+      "name": "Istio 1.30.4",
+      "html_url": "https://github.com/istio/istio/releases/tag/1.30.4",
+      "published_at": "27-08-2026"
     },
     {
       "owner": "argoproj",
       "repo": "argo-cd",
-      "tag_name": "v3.5.1",
-      "name": "v3.5.1",
-      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.5.1",
-      "published_at": "12-08-2026"
+      "tag_name": "v3.5.2",
+      "name": "v3.5.2",
+      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.5.2",
+      "published_at": "27-08-2026"
     },
     {
       "owner": "hashicorp",
       "repo": "terraform",
-      "tag_name": "v1.15.9",
-      "name": "v1.15.9",
-      "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.15.9",
-      "published_at": "19-08-2026"
+      "tag_name": "v1.16.0",
+      "name": "v1.16.0",
+      "html_url": "https://github.com/hashicorp/terraform/releases/tag/v1.16.0",
+      "published_at": "26-08-2026"
     },
     {
       "owner": "hashicorp",
