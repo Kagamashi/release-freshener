@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-10-07 18:26 UTC",
+  "last_fetched": "2026-10-08 18:26 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -44,10 +44,10 @@
     {
       "owner": "hashicorp",
       "repo": "terraform-provider-azurerm",
-      "tag_name": "v5.8.0",
-      "name": "v5.8.0",
-      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v5.8.0",
-      "published_at": "01-10-2026"
+      "tag_name": "v5.9.0",
+      "name": "v5.9.0",
+      "html_url": "https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v5.9.0",
+      "published_at": "08-10-2026"
     },
     {
       "owner": "microsoft",
@@ -76,10 +76,10 @@
     {
       "owner": "kubernetes-sigs",
       "repo": "kustomize",
-      "tag_name": "kyaml/v0.21.2",
-      "name": "kyaml/v0.21.2",
-      "html_url": "https://github.com/kubernetes-sigs/kustomize/releases/tag/kyaml/v0.21.2",
-      "published_at": "30-09-2026"
+      "tag_name": "kyaml/v0.21.3",
+      "name": "kyaml/v0.21.3",
+      "html_url": "https://github.com/kubernetes-sigs/kustomize/releases/tag/kyaml/v0.21.3",
+      "published_at": "08-10-2026"
     },
     {
       "owner": "8gears",
