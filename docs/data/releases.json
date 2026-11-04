@@ -1,5 +1,5 @@
 {
-  "last_fetched": "2026-11-04 13:43 UTC",
+  "last_fetched": "2026-11-04 19:22 UTC",
   "releases": [
     {
       "owner": "kubernetes",
@@ -28,10 +28,10 @@
     {
       "owner": "argoproj",
       "repo": "argo-cd",
-      "tag_name": "v3.6.0",
-      "name": "v3.6.0",
-      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.6.0",
-      "published_at": "03-11-2026"
+      "tag_name": "v3.6.1",
+      "name": "v3.6.1",
+      "html_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.6.1",
+      "published_at": "04-11-2026"
     },
     {
       "owner": "hashicorp",
